@@ -1,3 +1,5 @@
+require "dialog"
+
 game = {}
 
 function game.load()

@@ -126,9 +126,7 @@ function fadeOut(dt)
   RPG_Logo.a3 = RPG_Logo.a3-dt
   if RPG_Logo.a3<0 then
     RPG_Logo.fade = 0
-    RPG_Logo.callback(menu)
-  else
-    RPG_Logo.fade = RPG_Logo.fade - dt*RPG_Logo.vel1
+  else    RPG_Logo.fade = RPG_Logo.fade - dt*RPG_Logo.vel1
   end
 end
 

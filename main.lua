@@ -1,14 +1,11 @@
 require "RPG_Full_Logo/RPG_Logo"
 require "game" 
-require "menu"
-require "Player/player"
 local current_step
 
 function love.load()
   RPG_Logo.load(1.5,1.5,1.5,love.startGame)
   current_step = RPG_Logo
   game.load()
-  menu.load()
 end
 
 function love.update(dt)
@@ -23,15 +20,7 @@ function love.keypressed(key)
   current_step.keypressed(key)
 end
 
-<<<<<<< .mine
-function love.startGame(x)
-  current_step = x
-||||||| .r5
 function love.startGame()
   current_step = game
-=======
-function love.startGame()
-  current_step = menu
->>>>>>> .r11
   current_step.start()
 end

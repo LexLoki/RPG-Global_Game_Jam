@@ -1,6 +1,7 @@
 require "RPG_Full_Logo/RPG_Logo"
 require "game" 
-
+require "menu"
+require "Player/player"
 local current_step
 
 function love.load()

@@ -23,7 +23,15 @@ function love.keypressed(key)
   current_step.keypressed(key)
 end
 
+<<<<<<< .mine
+function love.startGame(x)
+  current_step = x
+||||||| .r5
+function love.startGame()
+  current_step = game
+=======
 function love.startGame()
   current_step = menu
+>>>>>>> .r11
   current_step.start()
 end

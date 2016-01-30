@@ -1,5 +1,6 @@
 menu={}
-function menu.load()
+function menu.load(callback)
+  menu.callback = callback
 end
 
 function menu.start()
@@ -12,7 +13,7 @@ function menu.update(dt)
 end
 function menu.keypressed(key)
   if(key == 'return') then
-    current_step = game
+    menu.callback(game)
   end
   
   if(key == "down") then

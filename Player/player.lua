@@ -13,16 +13,20 @@ function player.load()
 end
 
 function player.start()
-  player.speedx = 100
+  player.speedx = 300
   player.speedy = 100
   player.x = 100
   player.y = 100
+  player.width = 64
+  player.height = 96
   player.dir = 1
   player.state = player_walkState
+  player.jump_time = 5.0
+  timer_jump = 0
 end
 
 function player.update(dt)
-  player.y = player.y + player.speedy*dt --+ gravity*(dt)/2
+  player.y = player.y + player.speedy*dt
   player.speedy = player.speedy + gravity*dt
   if(love.keyboard.isDown("right")) then
     player.dir = 1
@@ -42,7 +46,7 @@ function player.draw()
     player.x = 100
     player.y = 600
   end
-  love.graphics.rectangle("fill",player.x,player.y,64,96)
+  love.graphics.rectangle("fill",player.x,player.y,player.width,player.height)
 end
 
 function player.jump()

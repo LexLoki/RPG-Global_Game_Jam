@@ -14,17 +14,20 @@ function player_walkState.exit()
 end
 
 function player_walkState.update(dt)
-  
+  timer_jump = timer_jump + dt
+  if (timer_jump >= 5.0) then
+    player.jump()
+  end
+  if(love.keyboard.isDown("shift")) then
+    player.speedx = 1000
+  end
 end
-
 function player_walkState.draw()
   
 end
 
 function player_walkState.keypressed(key)
-  if (key == "space") then
-    player.jump()
-  end
+  
 end
 function player_walkState.keyreleased(key)
   

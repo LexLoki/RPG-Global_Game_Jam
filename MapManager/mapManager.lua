@@ -38,10 +38,10 @@ function mapManager.load()
   mapManager.sheetWidth = mapManager.sheet:getWidth()
   mapManager.sheetHeight = mapManager.sheet:getHeight()
   --loadTile("floor",2)
-  loadQuadTile(1)
-  loadQuadTile(2,0,0)
-  loadQuadTile(2,1,1)
-  loadQuadTile(3,6,0)
+  loadQuadTile(1) -- 1
+  loadQuadTile(2,0,0) -- 2
+  loadQuadTile(2,1,1) -- 3
+  loadQuadTile(3,6,0) -- 4
 end
 
 function mapManager.hazardCallback(callback)
@@ -87,6 +87,7 @@ function mapManager.start(filename)
     end
     i = i+1
   end
+  file:close()
   mapManager.camera = {
     pos_x = 0,
     pos_y = 0
@@ -95,16 +96,39 @@ function mapManager.start(filename)
   mapManager.height = i*tileSize
 end
 
-function mapManager.update(dt)
+function mapManager.update(dt,player)
   local w = love.graphics.getWidth()
+  local h = love.graphics.getHeight()
+  mapManager.camera.pos_x = math.min(math.max(0,player.x+player.width/2-w/2),mapManager.width-w)
+  mapManager.camera.pos_y = math.min(math.max(0,player.y+player.height/2-h/2),mapManager.height-h)
 end
 
 function mapManager.draw()
   --print("DRAW")
-  for i,v in ipairs(mapManager.solid) do
-    for j,w in ipairs(v) do
-      if w.quad ~= nil then
-        love.graphics.draw(mapManager.sheet,w.quad,(j-1)*32,(i-1)*32,0,0.5,0.5)
+  local w = love.graphics.getWidth()
+  local h = love.graphics.getHeight()
+  local px = mapManager.camera.pos_x
+  local py = mapManager.camera.pos_y
+  local fx = px
+  local cx = fx + w
+  local fy = py
+  local cy = fy + h
+  cy = math.floor(cy/tileSize)+1
+  fy = math.floor(fy/tileSize)+1
+  cx = math.floor(cx/tileSize)+1
+  fx = math.floor(fx/tileSize)+1
+  local x=px%tileSize
+  local y=py%tileSize
+  print(fx .. " " .. cx .. " " .. fy .. " " .. cy)
+  for i=fy,cy do
+  --for i,v in ipairs(mapManager.solid) do
+    for j=fx,cx do
+    --for j,w in ipairs(v) do
+      local w = mapManager.solid[i]
+      if w~=nil then w = w[j] end
+      if w~=nil and w.quad ~= nil then
+        love.graphics.draw(mapManager.sheet,w.quad,-x+(j-fx)*32,-y+(i-fy)*32,0,0.5,0.5)
+        --love.graphics.draw(mapManager.sheet,w.quad,(j-1)*32,(i-1)*32,0,0.5,0.5)
       end
       --love.graphics.draw(w.img,(i-1)*32,(j-1)*32,0,0.5,0.5)
     end

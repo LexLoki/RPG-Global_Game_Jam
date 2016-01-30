@@ -43,7 +43,8 @@ function player.draw()
     player.x = 100
     player.y = 600
   end
-  love.graphics.rectangle("fill",player.x,player.y,player.width,player.height)
+  local c = mapManager.camera
+  love.graphics.rectangle("fill",player.x-c.pos_x,player.y-c.pos_y,player.width,player.height)
 end
 
 function player.jump()

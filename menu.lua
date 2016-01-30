@@ -3,7 +3,7 @@ function menu_load()
   pausado = true
 end
 function menu_keypressed(key)
-  if(key == "right") then
+  if(key == "down") then
     if pressionado == 0 then
       pressionado = 1
     elseif pressionado == 1 then
@@ -16,5 +16,4 @@ function menu_keypressed(key)
   end
 end
 function menu_draw()
-  
 end

@@ -22,7 +22,7 @@ function love.keypressed(key)
   current_step.keypressed(key)
 end
 
-function love.startGame()
-  current_step = game
+function love.startGame(x)
+  current_step = x
   current_step.start()
 end

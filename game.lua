@@ -16,8 +16,7 @@ function game.start()
 end
 
 function game.keypressed(key)
-  game.gameState.keypressed(key)
-end
+  game.gameState.keypressed(key)end
 
 function game.update(dt)
   game.gameState.update(dt)

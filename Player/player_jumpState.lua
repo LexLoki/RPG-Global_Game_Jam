@@ -6,7 +6,7 @@ function player_jumpState.load()
 end
 
 function player_jumpState.start()
-  
+  player.speedy = player.jumpForce
 end
 
 function player_jumpState.exit()
@@ -22,7 +22,6 @@ function player_jumpState.draw()
 end
 
 function player_jumpState.keypressed(key)
-  
 end
 function player_jumpState.keyreleased(key)
   

@@ -136,9 +136,14 @@ end
 
 function mapManager.handleHorizontalContact(player,tx)
   for i=math.floor(player.y/tileSize)+1,math.floor((player.y+player.height)/tileSize)+1 do
-    if not mapManager.solid[i][tx].class.handleHorizontalContact(player) then
-      return false
-    end
+    if i > 0 and i <= table.getn(mapManager.solid)
+     and  tx > 0 and tx <= table.getn(mapManager.solid[i]) then
+      if not mapManager.solid[i][tx].class.handleHorizontalContact(player) then
+        return false
+      end
+    else
+              return false
+    end  
   end
   return true
 end
@@ -146,8 +151,11 @@ end
 function mapManager.handleVerticalContact(player,ty)
   local y = (ty-1)*tileSize
   for j=math.floor(player.x/tileSize)+1,math.floor((player.x+player.width)/tileSize)+1 do
-    if not mapManager.solid[ty][j].class.handleVerticalContact(player,{x=(j-1)*tileSize,y=y,width=tileSize,height=tileSize}) then
-      return false
+    if ty > 0 and ty <=  table.getn(mapManager.solid)
+     and  j > 0 and j <=  table.getn(mapManager.solid[ty])then
+      if not mapManager.solid[ty][j].class.handleVerticalContact(player,{x=(j-1)*tileSize,y=y,width=tileSize,height=tileSize}) then
+        return false
+      end 
     end
   end
   return true

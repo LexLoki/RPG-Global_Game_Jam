@@ -1,6 +1,7 @@
+require "tile"
 tile_hazard = {}
 
 function tile_hazard.handleContact(player,tile)
-  tile_playerHitHazard()
+  tile.playerHitHazard()
   return true
 end

@@ -1,3 +1,4 @@
+require "tile"
 tile_solid = {}
 
 function tile_solid.handleHorizontalContact(player,tile)
@@ -6,7 +7,7 @@ end
 
 function tile_solid.handleVerticalContact(player,tile)
   if player.speed.y>0 then
-    tile_playerTouchedFloor()
+    tile.playerTouchedFloor()
   end
   return true
 end

@@ -23,4 +23,4 @@ end
 function love.startGame()
   current_step = game
   current_step.start()
-end
+end ]]--

@@ -1,6 +1,5 @@
 menu={}
 function menu.load()
-  
 end
 
 function menu.start()
@@ -12,6 +11,10 @@ function menu.update(dt)
   
 end
 function menu.keypressed(key)
+  if(key == 'return') then
+    current_step = game
+  end
+  
   if(key == "down") then
     if pressionado == 0 then
       pressionado = 1

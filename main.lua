@@ -6,8 +6,9 @@ local current_step
 
 function love.load()
   RPG_Logo.load(1.5,1.5,1.5,love.startGame)
-  game.load()
   current_step = RPG_Logo
+  game.load()
+  menu.load()
 end
 
 function love.update(dt)

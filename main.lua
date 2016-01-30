@@ -2,6 +2,8 @@ require "RPG_Full_Logo/RPG_Logo"
 require "game" 
 local current_step
 
+io.stdout:setvbuf("no")
+
 function love.load()
   RPG_Logo.load(1.5,1.5,1.5,love.startGame)
   current_step = RPG_Logo

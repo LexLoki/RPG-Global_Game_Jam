@@ -31,7 +31,7 @@ end
 
 function game.changeState(x)
   game.gameState = x
-  x.start()
+  game.gameState.start()
 end
 
 function game.goToStage()

@@ -2,11 +2,11 @@ player_jumpState = {}
 
 
 function player_jumpState.load()
-  
+  player_jumpState.jumpForce = -700
 end
 
 function player_jumpState.start()
-  player.speedy = player.jumpForce
+  player.speedy = player_jumpState.jumpForce
 end
 
 function player_jumpState.exit()
@@ -14,7 +14,6 @@ function player_jumpState.exit()
 end
 
 function player_jumpState.update(dt)
-  
 end
 
 function player_jumpState.draw()

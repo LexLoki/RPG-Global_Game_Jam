@@ -1,13 +1,13 @@
-require "tile"
+require "MapManager/tile"
 tile_solid = {}
 
-function tile_solid.handleHorizontalContact(player,tile)
-  return true
+function tile_solid.handleHorizontalContact(player)
+  return false
 end
 
-function tile_solid.handleVerticalContact(player,tile)
-  if player.speed.y>0 then
+function tile_solid.handleVerticalContact(player)
+  if player.speedy>0 then
     tile.playerTouchedFloor()
   end
-  return true
+  return false
 end

@@ -3,3 +3,7 @@
 function math.sign(n)
   return n<0 and -1 or 1
 end
+
+function math.absSign(n)
+  return n==0 and 0 or math.sign(n)
+end

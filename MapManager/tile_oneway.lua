@@ -1,11 +1,15 @@
-require "tile"
+require "MapManager/tile"
 tile_oneway = {}
 
-function tile_oneway.handleContactVertical(player,tile)
-  if player.y<tile.y and player.y+player.height<=tile.y then
+function tile_oneway.handleVerticalContact(player,block)
+  if player.y<block.y and player.y+player.height<=block.y then
     tile.playerTouchedFloor()
-    return true
-  else
     return false
+  else
+    return true
   end
+end
+
+function tile_oneway.handleHorizontalContact(player)
+  return false
 end

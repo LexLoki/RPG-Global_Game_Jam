@@ -7,14 +7,14 @@ local entryState
 
 function player.load()
   player.maxSpeed = 100
-  player.jumpForce = -700
   player.invTime = 2
-  gravity = 1100
+  player.gravity = 1100
+  player_jumpState.load()
 end
 
 function player.start()
-  player.speedx = 300
-  player.speedy = 100
+  player.speedx = 0
+  player.speedy = 0
   player.x = 100
   player.y = 100
   player.width = 64
@@ -26,19 +26,16 @@ function player.start()
 end
 
 function player.update(dt)
-  player.y = player.y + player.speedy*dt
-  player.speedy = player.speedy + gravity*dt
+  --player.y = player.y + player.speedy*dt
+  player.speedy = player.speedy + player.gravity*dt
   if(love.keyboard.isDown("right")) then
-    player.dir = 1
-    player.x = player.x + (player.speedx)*player.dir*dt
+    player.speedx = player.maxSpeed
+  elseif(love.keyboard.isDown("left")) then
+    player.speedx = -player.maxSpeed
+  else
+    player.speedx = 0
   end
-  if(love.keyboard.isDown("left")) then
-    player.dir = -1
-    player.x = player.x + (player.speedx)*player.dir*dt
-  end
-  if player.y > 600 then
-    player.y = 600
-  end
+  player.state.update(dt)
 end
 
 function player.draw()
@@ -54,8 +51,10 @@ function player.jump()
   entryState(player_jumpState)
 end
 function player.reachFloor()
-  --.. do something maybe
-  entryState(player_walkState)
+  player.speedy = 0
+  if player.state ~= player_walkState then
+    entryState(player_walkState)
+  end
 end
 
 function player.keypressed(key)

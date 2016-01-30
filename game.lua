@@ -6,9 +6,9 @@ game = {}
 
 function game.load()
   player.load()
-  menu.load(game.changeState)
+  menu.load()
   stage.load()
-  game.gameState = menu
+  game.goToMenu()
 end
 
 function game.start()
@@ -36,4 +36,8 @@ end
 
 function game.goToStage()
   game.changeState(stage)
+end
+
+function game.goToMenu()
+  game.changeState(menu)
 end

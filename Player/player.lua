@@ -6,7 +6,7 @@ player = {}
 local entryState
 
 function player.load()
-  player.maxSpeed = 100
+  player.maxSpeed = 200
   player.invTime = 2
   player.gravity = 1100
   player_jumpState.load()
@@ -18,7 +18,7 @@ function player.start()
   player.x = 100
   player.y = 100
   player.width = 64
-  player.height = 96
+  player.height = 128
   player.dir = 1
   player.state = player_walkState
   player.jump_time = 5.0

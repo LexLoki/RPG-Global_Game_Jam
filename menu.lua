@@ -1,8 +1,17 @@
-function menu_load()
+menu={}
+function menu.load()
+  
+end
+
+function menu.start()
   pressionado = 0
   pausado = true
 end
-function menu_keypressed(key)
+
+function menu.update(dt)
+  
+end
+function menu.keypressed(key)
   if(key == "down") then
     if pressionado == 0 then
       pressionado = 1
@@ -15,5 +24,6 @@ function menu_keypressed(key)
     end
   end
 end
-function menu_draw()
+function menu.draw()
+  
 end

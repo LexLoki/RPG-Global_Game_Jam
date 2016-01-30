@@ -18,10 +18,9 @@ function stage.update(dt)
 end
 
 function stage.draw()
-  if not stage.isPaused then
-    mapManager.draw()
-    player.draw()
-  else
+  mapManager.draw()
+  player.draw()
+  if stage.isPaused then
     stage.pauseDraw()
   end
 end
@@ -42,5 +41,9 @@ function stage.start()
 end
 
 function stage.keypressed(key)
-  player.keypressed(key)
+  if key == "escape" then
+    stage.isPaused = not stage.isPaused
+  elseif not stage.isPaused then
+    player.keypressed(key)
+  end
 end

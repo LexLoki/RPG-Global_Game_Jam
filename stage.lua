@@ -1,7 +1,6 @@
 require "Player/player"
 require "MapManager/mapManager"
-require "enemie/enemie_human"
-require "enemie/enemie_dog"
+require "enemie/enemies"
 
 stage = {}
 
@@ -11,8 +10,7 @@ function stage.load()
  -- mapManager.touchedFloorCallback(player.reachFloor)
   
   -- Loop para atualizar Enemies da Lista
-  enemie_human.load()
-  enemie_dog.load()
+  enemies.load()
 end
 
 function stage.update(dt)
@@ -23,10 +21,7 @@ function stage.update(dt)
     
     
    -- Loop para atualizar Enemies da Lista
-    enemie_human.update(dt)
-    enemie_dog.update(dt)
-    mapManager.handleContact(dt,enemie_dog)
-    mapManager.handleContact(dt,enemie_human)
+    enemies.update(dt)
 
   end
 end
@@ -36,8 +31,7 @@ function stage.draw()
   mapManager.draw()
   
   -- Loop para atualizar Enemies da Lista
-  enemie_dog.draw()
-  enemie_human.draw()
+  enemies.draw()
   
   player.draw()
   if stage.isPaused then

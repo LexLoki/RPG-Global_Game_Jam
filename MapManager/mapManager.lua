@@ -149,6 +149,11 @@ function mapManager.handleContact(dt,entity)
     --entity.x = (x_coord-1-s)*tileSize
   end
   
+--[[  if entity.name ~= nil then
+    print(entity.name)
+    print(entity.name.." "..entity.speedy)
+  end]]
+  
   s = math.sign(entity.speedy)
   front = entity.y + entity.height/2 + entity.height/2*s
   local dy = front + entity.speedy*dt

@@ -1,12 +1,11 @@
 enemie_jumpState = {}
 
 
-function enemie_jumpState.load(value)
-  enemie_jumpState.jumpForce = -value
+function enemie_jumpState.load()
 end
 
 function enemie_jumpState.start(entity)
-  entity.speedy = enemie_jumpState.jumpForce
+  entity.speedy = entity.jumpForce
 end
 
 function enemie_jumpState.exit(entity)

@@ -104,7 +104,6 @@ function player.takeHit()
     player.life = player.life-1
     animationManager_restart(player.hit.aComp)
   end
-  
 end
 
 function entryState(state)

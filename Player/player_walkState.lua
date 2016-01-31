@@ -1,4 +1,5 @@
 require "mathUtils"
+require "attack"
 
 player_walkState = {}
 
@@ -20,10 +21,13 @@ function player_walkState.update(dt)
   if love.keyboard.isDown("lshift") or love.keyboard.isDown("rshift") then
     player.speedx = player.maxSpeed*math.absSign(player.speedx)*2
   end
-  if (timer_jump >= 5.0) then
-    timer_jump = 0
+  if (timer_jump >= 5.0) then    timer_jump = 0
     player.jump()
   end
+  end
+  if love.keyboard.isDown("lshift") or love.keyboard.isDown("rshift") then
+    player.speedx = player.maxSpeed*math.absSign(player.speedx)*2
+  end  attack.update(dt)
 end
 function player_walkState.draw()
   

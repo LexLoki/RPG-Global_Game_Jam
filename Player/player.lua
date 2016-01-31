@@ -1,9 +1,7 @@
 require "Player/player_jumpState"
 require "Player/player_walkState"
-require "Player/player_walkState"
-require "animations"
+require "attack"require "animations"
 require "animationManager"
-
 player = {}
 
 local entryState, loadSpriteData
@@ -12,7 +10,11 @@ function player.load()
   player.maxSpeed = 200
   player.invTime = 2
   player.gravity = 1100
+  player.width = 64
+  player.height = 128
+  player.jump_time = 5.0
   player_jumpState.load()
+  attack.load()
 end
 
 function player.start()
@@ -20,13 +22,10 @@ function player.start()
   player.speedy = 0
   player.x = 100
   player.y = 100
-  player.width = 64
-  player.height = 128
   player.dir = 1
   player.state = player_walkState
-  player.jump_time = 5.0
   timer_jump = 0
-  player.offset = {
+player.offset = {
     x=19,
     y=6
   }
@@ -37,7 +36,7 @@ function player.start()
   player.walk = loadSpriteData("/Assets/player_walk.png",8,8,1,true)
   player.jumpS = loadSpriteData("/Assets/player_jump.png",5,5,0.3,false)
   player.curr_sprite = player.walk
-end
+  attack.start()end
 
 function loadSpriteData(filename,quant,col,time,doRepeat)
   local img = love.graphics.newImage(filename)
@@ -78,6 +77,7 @@ function player.draw()
   local d = player.speedx<0 and -1 or 1
   love.graphics.draw(s.sheet,s.quads[s.aComp.curr_frame],player.x-c.pos_x+player.width/2,player.y-c.pos_y+player.height/2,0,d,1,player.width/2,player.height/2)
   --love.graphics.rectangle("line",player.x-c.pos_x,player.y-c.pos_y,player.width,player.height)
+  attack.draw()
 end
 
 function player.jump()

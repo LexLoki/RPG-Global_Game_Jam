@@ -28,55 +28,70 @@ local tile_types = {
   tile_hazard
 }
 
-local tileSize = 32
+local tileSize = 64
 local evaluateField
 local loadTile, loadQuadTile
 
 function mapManager.load()
   mapManager.data = {}
-  mapManager.sheet = love.graphics.newImage("/MapManager/Tiles_64x64.png")
+  mapManager.sheet = love.graphics.newImage("/MapManager/tileset.png")
   mapManager.sheetWidth = mapManager.sheet:getWidth()
   mapManager.sheetHeight = mapManager.sheet:getHeight()
   --loadTile("floor",2)
   loadQuadTile(1) -- 1
   loadQuadTile(2,0,0) -- 2
-  loadQuadTile(2,1,1) -- 3
-  loadQuadTile(3,6,0) -- 4
-  loadQuadTile(1) -- 1
-  loadQuadTile(2,0,0) -- 2
-  loadQuadTile(2,1,1) -- 3
-  loadQuadTile(3,6,0) -- 4
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
-  loadQuadTile(3,6,0)
+  loadQuadTile(2,0,1) -- 3
   
+  --car
+  loadQuadTile(2,5,0) -- 4
+  loadQuadTile(2,6,0) -- 5
+  loadQuadTile(2,4,1) -- 6
+  loadQuadTile(2,5,1) -- 7
+  loadQuadTile(2,6,1) -- 8
+  --muro
+  loadQuadTile(2,1,0) -- 9
+  loadQuadTile(2,2,0) -- 10
+  loadQuadTile(2,3,0) -- 11
+  
+  --down mureta
+  loadQuadTile(2,13,1) -- 12
+  loadQuadTile(2,14,1) -- 13
+  
+  --telha
+  loadQuadTile(3,13,0) -- 14
+  loadQuadTile(3,14,0) -- 15
+  --placeholder
+  loadQuadTile(3,0,1) -- 16
+  
+  --placeholder wall
+  loadQuadTile(2,2,1) -- 17
+  
+  --galho
+  loadQuadTile(3,7,0) -- 18
+  loadQuadTile(3,8,0) -- 19
+  
+  --banco
+  loadQuadTile(1,9,0) -- 20
+  loadQuadTile(1,10,0) -- 21
+  loadQuadTile(1,11,0) -- 22
+  loadQuadTile(3,9,1) -- 23
+  loadQuadTile(3,10,1) -- 24
+  loadQuadTile(3,11,1) -- 25
+  
+  --lixeira
+  loadQuadTile(3,12,0) -- 26
+  
+  --mastro placeholder
+  loadQuadTile(3,0,1) -- 27
+  loadQuadTile(3,0,1) -- 28
+  
+  --muro down
+  loadQuadTile(2,1,1) -- 29
+  loadQuadTile(2,2,1) -- 30
+  loadQuadTile(2,3,1) -- 31
+  
+  --ganhou
+  loadQuadTile(1) -- 32
 end
 
 --[[
@@ -104,6 +119,9 @@ function loadTile(string, id)
 end
 
 function evaluateField(code,i,j)
+  if code > 32 then
+    code = 1
+  end
   mapManager.solid[i][j] = mapManager.data[code]
 end
 
@@ -164,7 +182,7 @@ function mapManager.draw()
       local w = mapManager.solid[i]
       if w~=nil then w = w[j] end
       if w~=nil and w.quad ~= nil then
-        love.graphics.draw(mapManager.sheet,w.quad,-x+(j-fx)*32,-y+(i-fy)*32,0,0.5,0.5)
+        love.graphics.draw(mapManager.sheet,w.quad,-x+(j-fx)*64,-y+(i-fy)*64)
         --love.graphics.draw(mapManager.sheet,w.quad,(j-1)*32,(i-1)*32,0,0.5,0.5)
       end
       --love.graphics.draw(w.img,(i-1)*32,(j-1)*32,0,0.5,0.5)

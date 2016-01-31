@@ -26,6 +26,6 @@ function cutscene.draw()
 end
 
 function endvideo()
-  video:pause()
+  video:pause() 
   game.goToStage()
 end

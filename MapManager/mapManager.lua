@@ -186,8 +186,6 @@ function evaluateField(sceneList, code,i,j)
     elseif code == 38 then --marfioso
       enemie_marfian.spawn(pos_x, pos_y)
       enemies.update_enemie_list()
-    end
-    
     elseif code >= 100 then
       local data = mapManager.bgData[code]
       --data.width

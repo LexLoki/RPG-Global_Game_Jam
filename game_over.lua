@@ -13,6 +13,8 @@ function game_over.load()
 end
 
 function game_over.start()
+  love.audio.stop(audio.stageMusic)
+  audio.playGameover()
   for i,but in ipairs(game_over.buttons) do
     but.y = game_over.buttonyPos
     but.x = but.XPos

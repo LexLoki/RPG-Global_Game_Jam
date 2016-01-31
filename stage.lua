@@ -49,6 +49,8 @@ function stage.pauseDraw()
 end
 
 function stage.start()
+  love.audio.stop(audio.menuMusic)
+  audio.play(audio.stageMusic)
   player.start()
   mapManager.start()
   stage.isPaused = false

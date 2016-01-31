@@ -22,6 +22,7 @@ function attack.update(dt)
   timer_punch = timer_punch + dt
   if (timer_punch >= 3.5) then
     attack.ing = true
+    audio.playPlayerPunch()
     timer_punch = 0
   end
 

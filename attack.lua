@@ -24,10 +24,9 @@ function attack.update(dt)
     attack.ing = true
     timer_punch = 0
   end
-  --[[
-  if(CheckBoxCollision(attack.x,attack.y,attack.width,attack.height,enemie.x,enemie.y,64,96)) and attack.ing then
+--[[if(CheckBoxCollision(attack.x,attack.y,attack.width,attack.height,enemie.x,enemie.y,64,96)) and attack.ing then
     attack.damage = true 
-  end
+  end]]
   ]]
 end
 function attack.draw()

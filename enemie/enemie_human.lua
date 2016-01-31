@@ -121,7 +121,7 @@ function enemie_human.draw()
     local d = -v.last_dir
     local s = enemie_human.idle
     love.graphics.draw(s.sheet,s.quads[v.aComp.curr_frame],v.x-c.pos_x+v.width/2, v.y-c.pos_y+v.height/2,0,d,1,v.width/2,v.height/2)
-    love.graphics.print(enemie_human.name, (v.x + v.width/2) - c.pos_x, (v.y + v.height/2) - c.pos_y)
+   -- love.graphics.print(enemie_human.name, (v.x + v.width/2) - c.pos_x, (v.y + v.height/2) - c.pos_y)
   end
 end
 

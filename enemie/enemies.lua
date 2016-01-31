@@ -9,8 +9,8 @@ function enemies.load()
   enemie_human.load()
   enemie_dog.load()
   
-  enemie_human.spawn(500, 200)
-  enemie_human.spawn(1000, 200)
+  --[[enemie_human.spawn(500, 200)
+  enemie_human.spawn(1000, 200)]]--
 
   enemie_dog.spawn(800, 400)
   enemie_dog.spawn(400, 400)

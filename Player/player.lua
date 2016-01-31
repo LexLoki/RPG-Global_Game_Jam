@@ -22,7 +22,7 @@ function player.load()
   player_deathState.load()
   attack.load()
   player.walk = animations.loadSpriteData("/Assets/player_walk.png",8,8,1,true)
-  player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.3,false)
+  player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.7,false)
   player.idle = animations.loadSpriteData("/Assets/player_idle.png",8,3,1,true)
   player.hit = animations.loadSpriteData("/Assets/player_hit.png",1,1,0.4,false)
   player.death = animations.loadSpriteData("/Assets/player_death.png",9,9,0.5,false)
@@ -93,7 +93,7 @@ function player.jump()
   entryState(player_jumpState)
 end
 function player.reachFloor()
-  print("chaozin")
+  --print("chaozin")
   player.speedy = 0
   if player.state == player_jumpState then
     entryState(player_walkState)

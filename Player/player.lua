@@ -21,7 +21,6 @@ function player.load()
   player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.6,false)
   player.idle = animations.loadSpriteData("/Assets/player_idle.png",8,3,1,true)
   player.hit = animations.loadSpriteData("/Assets/player_hit.png",1,1,0.4)
-  player.curr_sprite = player.walk
 end
 
 function player.start()
@@ -44,6 +43,7 @@ player.offset = {
     width = 29,
     height = 123
   }
+  player.curr_sprite = player.idle
   attack.start()
 end
 
@@ -85,6 +85,7 @@ function player.jump()
   entryState(player_jumpState)
 end
 function player.reachFloor()
+  print("chaozin")
   player.speedy = 0
   if player.state ~= player_walkState then
     entryState(player_walkState)

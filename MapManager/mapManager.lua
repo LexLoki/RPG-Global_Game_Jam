@@ -30,7 +30,7 @@ local tile_types = {
 }
 
 local tileSize = 64
-local evaluateField
+local evaluateField, storeBG
 local loadTile, loadQuadTile
 local loadBackground
 
@@ -107,6 +107,33 @@ function mapManager.load()
   
   --ganhou
   loadQuadTile(1) -- 32
+  
+  mapManager.bgData = {}
+  mapManager.bgSheet = love.graphics.newImage("/MapManager/tilemap_bg.png")
+  local w = mapManager.bgSheet:getWidth()
+  local h = mapManager.bgSheet:getHeight()
+  storeBG(100,2090,0,128,357,w,h)
+  storeBG(101,1638,42,451,472,w,h)
+  storeBG(102,1638,0,71,44,w,h)
+  storeBG(103,0,0,64*4,64*12,w,h)
+  storeBG(104,64*4,0,64*4,64*16,w,h)
+  storeBG(105,64*8,0,64*4,64*20,w,h)
+  storeBG(106,64*12,0,64*18,719,w,h)
+  storeBG(107,64*30,0,364,709,w,h)
+  --storeBG(108,,0, , ,w,h)
+  -- 100 poste
+    -- 101 arvore
+    -- 102 arbusto
+    -- 103 predio1
+    -- 104 predio2
+    -- 105 predio ferrado
+    -- 106 casa1
+    -- 107 casa2
+    -- 108 buraco
+end
+
+function storeBG(id,x,y,width,height,aw,ah)
+  mapManager.bgData[id] = {quad=love.graphics.newQuad(x,y,width,height,aw,ah),width=width,height=height}
 end
 
 --[[
@@ -161,6 +188,12 @@ function evaluateField(sceneList, code,i,j)
       enemies.update_enemie_list()
     end
     
+    elseif code >= 100 then
+      local data = mapManager.bgData[code]
+      --data.width
+      --data.height
+      -- para exibir love.graphics.draw(mapManager.bgSheet,data.quad, POSICAOX, POSICAOY)
+    end
     -- 100 poste
     -- 101 arvore
     -- 102 arbusto

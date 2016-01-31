@@ -85,7 +85,7 @@ function player.jump()
   entryState(player_jumpState)
 end
 function player.reachFloor()
-  print("chaozin")
+  
   player.speedy = 0
   if player.state ~= player_walkState then
     entryState(player_walkState)

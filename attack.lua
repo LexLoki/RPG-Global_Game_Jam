@@ -36,10 +36,12 @@ function attack.update_damage(dt)
       if(CheckBoxCollision(attack.x,attack.y,attack.width,attack.height,enemie.x,enemie.y,enemie.width, enemie.height))
       --and attack.ing 
       then
-
+          audio.playPlayerDamage()
           attack.damage = true 
           attack.timer_damage = 0
-          table.remove(v_enemie.list, i)
+          if attack.ing then
+            table.remove(v_enemie.list, i)
+          end
       end
     end
   end

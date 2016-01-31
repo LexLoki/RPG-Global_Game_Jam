@@ -121,7 +121,7 @@ function mapManager.draw()
   fx = math.floor(fx/tileSize)+1
   local x=px%tileSize
   local y=py%tileSize
-  print(fx .. " " .. cx .. " " .. fy .. " " .. cy)
+  --print(fx .. " " .. cx .. " " .. fy .. " " .. cy)
   for i=fy,cy do
   --for i,v in ipairs(mapManager.solid) do
     for j=fx,cx do

@@ -37,7 +37,6 @@ function audio.playPlayerPunch()
 end
 function audio.playPlayerDamage()
   audio.playSfx(audio.pDamageSound)
-  audio.playFire()
 end
 function audio.playMenuStart()
   audio.playSfx(audio.menuStartSound)

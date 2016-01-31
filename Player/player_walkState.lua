@@ -23,7 +23,9 @@ function player_walkState.update(dt)
     player.speedx = player.maxSpeed*math.absSign(player.speedx)*2
   end
   ]]
-  if player.speedx ~= 0 then
+  if attack.ing then
+    player.curr_sprite = player.punch
+  elseif player.speedx ~= 0 then
     player.curr_sprite = player.walk
   else
     player.curr_sprite = player.idle

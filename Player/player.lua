@@ -26,6 +26,7 @@ function player.load()
   player.idle = animations.loadSpriteData("/Assets/player_idle.png",8,3,1,true)
   player.hit = animations.loadSpriteData("/Assets/player_hit.png",1,1,0.4,false)
   player.death = animations.loadSpriteData("/Assets/player_death.png",9,9,0.5,false)
+  player.punch = animations.loadSpriteData("/Assets/player_punch.png",10,5,0.5,false)
   player.dashCooldown = 3
 end
 
@@ -126,8 +127,14 @@ end
 
 function player.takeHit()
   if player.invTimer <= 0 then
+    player.invTimer = player.invTime
     player.life = player.life-1
     animationManager_restart(player.hit.aComp)
+    if player.life == 0 then
+      player.die()
+    else
+      player.beingHit = true
+    end
   end
 end
 

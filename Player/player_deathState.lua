@@ -39,3 +39,7 @@ end
 function player_deathState.draw()
   
 end
+
+function player_deathState.keypressed()
+  
+end

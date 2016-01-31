@@ -29,4 +29,18 @@ function viscont.draw()
   love.graphics.circle("line", 1150, 100, 40, 2000)
   love.graphics.setColor(0,0,255)
   love.graphics.print("PUNCH", 1110, 145)
+  
+  -- Vida player
+  local w,h = 100,35
+  local stress = player.maxLife - player.life
+  for i=1,player.maxLife do
+    local p = 10+(i-1)*w
+    if i<=stress then
+      love.graphics.setColor(255,0,0)
+      love.graphics.rectangle("fill",p,10,w,h)
+    end
+    love.graphics.setColor(0,0,0)
+    love.graphics.rectangle("line",p,10,w,h)
+  end
+  love.graphics.setColor(255,255,255)
 end

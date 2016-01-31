@@ -120,7 +120,24 @@ end
 
 function evaluateField(code,i,j)
   if code > 32 then
-    code = 1
+    
+    pos_x = (j-1)*tileSize
+    pos_y = (i-1)*tileSize -1
+    
+    if code == 33 then --player
+      player.x = pos_x
+      player.y = pos_y
+    elseif code == 34 then --relogio
+    elseif code == 35 then --gato
+    elseif code == 36 then --cachorro
+      enemie_human.spawn(pos_x, pos_y)
+      enemies.update_enemie_list()
+    
+    elseif code == 37 then --humano
+      enemie_dog.spawn(pos_x, pos_y)
+      enemies.update_enemie_list()
+    end
+        code = 1
   end
   mapManager.solid[i][j] = mapManager.data[code]
 end

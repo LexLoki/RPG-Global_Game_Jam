@@ -121,6 +121,7 @@ end
 function evaluateField(code,i,j)
   if code > 32 then
     
+    print("rola="..code.. " - "..i.." x "..j)
     pos_x = (j-1)*tileSize
     pos_y = (i-1)*tileSize -1
     

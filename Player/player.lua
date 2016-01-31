@@ -14,11 +14,20 @@ function player.load()
   player.width = 64
   player.height = 128
   player.jump_time = 5.0
+  player.maxLife = 3
   player_jumpState.load()
   attack.load()
+  player.walk = animations.loadSpriteData("/Assets/player_walk.png",8,8,1,true)
+  player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.6,false)
+  player.idle = animations.loadSpriteData("/Assets/player_idle.png",10,4,1,true)
+  player.hit = animations.loadSpriteData("/Assets/player_hit.png",1,1,0.4)
+  player.curr_sprite = player.walk
 end
 
 function player.start()
+  player.invTimer = 0
+  player.beingHit = false
+  player.life = player.maxLife
   player.speedx = 0
   player.speedy = 0
   player.dir = 1
@@ -35,14 +44,22 @@ player.offset = {
     width = 29,
     height = 123
   }
-  player.walk = animations.loadSpriteData("/Assets/player_walk.png",8,8,1,true)
-  player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.3,false)
-  player.curr_sprite = player.walk
   attack.start()
 end
 
 function player.update(dt)
   --player.y = player.y + player.speedy*dt
+  if player.invTimer>0 then
+    if animationManager_update(dt,player.hit.aComp)==-1 then
+      player.beingHit = false
+    end
+    player.invTimer = player.invTimer-dt
+  end
+  player.processMovement(dt)
+  player.state.update(dt)
+end
+
+function player.processMovement(dt)
   player.speedy = player.speedy + player.gravity*dt
   if(love.keyboard.isDown("right")) then
     player.speedx = player.maxSpeed
@@ -51,21 +68,15 @@ function player.update(dt)
   else
     player.speedx = 0
   end
-  player.state.update(dt)
 end
 
 function player.draw()
-  if(player.x == nil) or (player.y == nil) then
-    player.x = 100
-    player.y = 600
-  end
   local c = mapManager.camera
-  local s = player.curr_sprite
+  local s = player.beingHit and player.hit or player.curr_sprite
   love.graphics.setColor(255,255,255)
   if player.speedx<0 then player.dir = -1
   elseif player.speedx>0 then player.dir = 1 end
   love.graphics.draw(s.sheet,s.quads[s.aComp.curr_frame],player.x-c.pos_x+player.width/2,player.y-c.pos_y+player.height/2,0,player.dir,1,player.width/2,player.height/2)
-  --love.graphics.rectangle("line",player.x-c.pos_x,player.y-c.pos_y,player.width,player.height)
   attack.draw()
 end
 
@@ -85,6 +96,14 @@ function player.keypressed(key)
 end
 
 function player.keyreleased(key)
+  
+end
+
+function player.takeHit()
+  if player.invTimer <= 0 then
+    player.life = player.life-1
+    animationManager_restart(player.hit.aComp)
+  end
   
 end
 

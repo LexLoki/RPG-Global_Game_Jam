@@ -19,7 +19,7 @@ function player.load()
   attack.load()
   player.walk = animations.loadSpriteData("/Assets/player_walk.png",8,8,1,true)
   player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.6,false)
-  player.idle = animations.loadSpriteData("/Assets/player_idle.png",10,4,1,true)
+  player.idle = animations.loadSpriteData("/Assets/player_idle.png",8,3,1,true)
   player.hit = animations.loadSpriteData("/Assets/player_hit.png",1,1,0.4)
   player.curr_sprite = player.walk
 end

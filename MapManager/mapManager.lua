@@ -4,6 +4,7 @@ require "MapManager/tile_hazard"
 require "MapManager/tile_free"
 require "MapManager/tile_oneway"
 require "mathUtils"
+require "Parallax/parallax"
 
 mapManager = {}
 
@@ -31,9 +32,23 @@ local tile_types = {
 local tileSize = 64
 local evaluateField
 local loadTile, loadQuadTile
+local loadBackground
+
+function loadBackground(string,speed)
+  local img = love.graphics.newImage(string)
+  local h = love.graphics.getHeight()*1.3
+  local w = h/img:getHeight()*img:getWidth()
+  return {image = img, height=h, width=w, speed=speed*w}
+end
 
 function mapManager.load()
   mapManager.data = {}
+  mapManager.backgrounds = {
+    loadBackground("/Parallax/Plano-3.png",0.125),
+    loadBackground("/Parallax/Plano-2.png",0.25),
+    loadBackground("/Parallax/Plano-1.png",0.35)
+  }
+  mapManager.parallax = parallax_new(mapManager.backgrounds)
   mapManager.sheet = love.graphics.newImage("/MapManager/tileset.png")
   mapManager.sheetWidth = mapManager.sheet:getWidth()
   mapManager.sheetHeight = mapManager.sheet:getHeight()
@@ -171,12 +186,15 @@ end
 function mapManager.update(dt,player)
   local w = love.graphics.getWidth()
   local h = love.graphics.getHeight()
+  local x = mapManager.camera.pos_x
   mapManager.camera.pos_x = math.min(math.max(0,player.x+player.width/2-w/2),mapManager.width-w)
   mapManager.camera.pos_y = math.min(math.max(0,player.y+player.height/2-h/2),mapManager.height-h)
+  parallax_update(dt,mapManager.parallax,math.absSign(mapManager.camera.pos_x-x))
 end
 
 function mapManager.draw()
   --print("DRAW")
+  parallax_draw(mapManager.parallax)
   local w = love.graphics.getWidth()
   local h = love.graphics.getHeight()
   local px = mapManager.camera.pos_x

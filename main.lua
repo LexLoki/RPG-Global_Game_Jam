@@ -5,8 +5,11 @@ local current_step
 io.stdout:setvbuf("no")
 
 function love.load()
-  RPG_Logo.load(1.5,1.5,1.5,love.startGame)
-  current_step = RPG_Logo
+  
+  
+  -- RPG_Logo.load(1.5,1.5,1.5,love.startGame)
+  -- current_step = RPG_Logo
+  current_step = game
   game.load()
 end
 

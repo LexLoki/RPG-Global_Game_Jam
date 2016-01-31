@@ -7,7 +7,7 @@ stage = {}
 function stage.load()
   player.load()
   mapManager.load()
-  mapManager.touchedFloorCallback(player.reachFloor)
+ -- mapManager.touchedFloorCallback(player.reachFloor)
   enemie.load()
 end
 
@@ -16,7 +16,10 @@ function stage.update(dt)
     mapManager.update(dt)
     player.update(dt)
     mapManager.handleContact(dt,player)
+    
     enemie.update(dt)
+    mapManager.handleContact(dt,enemie)
+
   end
 end
 

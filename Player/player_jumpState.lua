@@ -2,7 +2,7 @@ player_jumpState = {}
 
 
 function player_jumpState.load()
-  player_jumpState.jumpForce = -700
+  player_jumpState.jumpForce = -650
 end
 
 function player_jumpState.start()
@@ -18,7 +18,7 @@ function player_jumpState.exit()
 end
 
 function player_jumpState.update(dt)
-  print(player.fastJump)
+ -- print(player.fastJump)
   if player.fastJump then
     player.speedx = player.maxSpeed*math.absSign(player.speedx)*2
   end

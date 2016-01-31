@@ -6,8 +6,8 @@ function game_over.load()
   game_over.selectedColor = {0,255,255,255}
   game_over.buttonyPos = 500
   game_over.buttons = {
-    {XPos=50, dir = -1 },
-    {XPos=700, dir = -1}
+    {XPos=250, dir = -1,img = love.graphics.newImage("menu/Retry.png"), selImg = love.graphics.newImage("menu/Retry_Selec.png")},
+    {XPos=800, dir = -1,img = love.graphics.newImage("menu/Quit.png"), selImg = love.graphics.newImage("menu/Quit_Selec.png")}
   }
   game_over.time = 1
 end
@@ -52,9 +52,8 @@ end
 
 function game_over.draw()
   for i, v in ipairs(game_over.buttons) do
-    local c = i == game_over.pressionado and game_over.selectedColor or game_over.buttonColor
-    love.graphics.setColor(c)
-    love.graphics.rectangle("fill",v.x,v.y,game_over.buttonWidth,game_over.buttonHeight)
+    local c = i == game_over.pressionado and v.selImg or v.img
+    love.graphics.draw(c, v.x, v.y)
   end
   love.graphics.setColor(255,255,255)
 end

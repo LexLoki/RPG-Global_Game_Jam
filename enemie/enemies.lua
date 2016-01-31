@@ -5,7 +5,7 @@ enemies = {}
 enemies.list = {}
 
 function enemies.load()
-  
+
   enemie_human.load()
   enemie_dog.load()
 
@@ -16,12 +16,12 @@ function enemies.update_enemie_list()
 end
 
 function enemies.update(dt)
-   
+
   for i_enemie, v_enemie in ipairs(enemies.list) do
     v_enemie.update(dt)
     for i, v in ipairs(v_enemie.list) do
       mapManager.handleContact(dt,v)
-    end 
+    end
   end
 end
 
@@ -36,11 +36,11 @@ end
 
 
 function joinTables(t1, t2)
- 
+
    for k,v in ipairs(t2) do
       table.insert(t1, v)
-   end 
- 
+   end
+
    return t1
 end
 
@@ -49,7 +49,7 @@ function tableMerge(t1, t2)
     	if type(v) == "table" then
     		if type(t1[k] or false) == "table" then
     			tableMerge(t1[k] or {}, t2[k] or {})
-    		else  
+    		else
     			t1[k] = v
     		end
     	else

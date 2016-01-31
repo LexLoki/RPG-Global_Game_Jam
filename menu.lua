@@ -15,6 +15,7 @@ function menu.load()
 end
 
 function menu.start()
+  audio.play(audio.menuMusic)
   for i,but in ipairs(menu.buttons) do
     but.x = menu.buttonXPos
     but.y = but.yPos
@@ -29,6 +30,7 @@ function menu.update(dt)
       menu.timer = menu.timer - dt
       b.x = b.x + menu.vel*dt
       if menu.timer < 0 then
+        audio.playMenuStart()
         game.goToStage()
       end
     end
@@ -45,8 +47,10 @@ end
 function menu.keypressed(key)
   if(key == 'return') then
     if(menu.pressionado == 1) then
+      audio.playMenuStart()
       menu.startAnimation()
     elseif menu.pressionado == 3 then
+      audio.playMenuStart()
       love.event.push("quit")
     end
   elseif(key == "down") then

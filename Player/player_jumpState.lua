@@ -6,6 +6,7 @@ function player_jumpState.load()
 end
 
 function player_jumpState.start()
+  audio.playPlayerJump()
   player.speedy = player_jumpState.jumpForce
   player.fastJump = math.abs(player.speedx)>player.maxSpeed
   player.curr_sprite = player.jumpS

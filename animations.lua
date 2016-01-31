@@ -66,7 +66,7 @@ function animations.loadSpriteData(filename,quant,col,time,doRepeat)
   local aw = img:getWidth()
   local ah = img:getHeight()
   local ew = aw/col
-  local eh = ah/math.floor(quant/col)
+  local eh = ah/math.ceil(quant/col)
   local data = {
     sheet=img,
     quads=animations.loadQuads(quant,col,ew,eh,aw,ah),

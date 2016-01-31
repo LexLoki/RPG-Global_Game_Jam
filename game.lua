@@ -16,7 +16,7 @@ function game.load()
 end
 
 function game.start()
-  game.gameState.start()
+  --game.gameState.start()
 end
 
 function game.keypressed(key)

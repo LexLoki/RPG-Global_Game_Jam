@@ -2,11 +2,11 @@ cutscene = {}
 
 function cutscene.load()
   video = love.graphics.newVideo("Animatic-Tic-Toc-Man_.ogv", true)
-  video:play()
 end
 
 function cutscene.start()
-  
+  love.audio.stop(audio.menuMusic)
+  video:play()
 end
 
 function cutscene.keypressed(key)
@@ -26,5 +26,6 @@ function cutscene.draw()
 end
 
 function endvideo()
+  video:pause()
   game.goToStage()
 end

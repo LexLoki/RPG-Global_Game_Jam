@@ -30,7 +30,7 @@ local tile_types = {
 }
 
 local tileSize = 64
-local evaluateField, storeBG
+local evaluateField
 local loadTile, loadQuadTile
 local loadBackground
 
@@ -107,33 +107,6 @@ function mapManager.load()
   
   --ganhou
   loadQuadTile(1) -- 32
-  
-  mapManager.bgData = {}
-  mapManager.bgSheet = love.graphics.newImage("/MapManager/tilemap_bg.png")
-  local w = mapManager.bgSheet:getWidth()
-  local h = mapManager.bgSheet:getHeight()
-  storeBG(100,2090,0,128,357,w,h)
-  storeBG(101,1638,42,451,472,w,h)
-  storeBG(102,1638,0,71,44,w,h)
-  storeBG(103,0,0,64*4,64*12,w,h)
-  storeBG(104,64*4,0,64*4,64*16,w,h)
-  storeBG(105,64*8,0,64*4,64*20,w,h)
-  storeBG(106,64*12,0,64*18,719,w,h)
-  storeBG(107,64*30,0,364,709,w,h)
-  --storeBG(108,,0, , ,w,h)
-  -- 100 poste
-    -- 101 arvore
-    -- 102 arbusto
-    -- 103 predio1
-    -- 104 predio2
-    -- 105 predio ferrado
-    -- 106 casa1
-    -- 107 casa2
-    -- 108 buraco
-end
-
-function storeBG(id,x,y,width,height,aw,ah)
-  mapManager.bgData[id] = {quad=love.graphics.newQuad(x,y,width,height,aw,ah),width=width,height=height}
 end
 
 --[[
@@ -160,10 +133,10 @@ function loadTile(string, id)
   table.insert(mapManager.data,{img=love.graphics.newImage("/Assets/Tiles/" .. string .. ".png"),class=tile_types[id]})
 end
 
-function evaluateField(sceneList, code,i,j)
+function evaluateField(code,i,j)
   if code > 32 then
     
-    --print("rola="..code.. " - "..i.." x "..j)
+    print("rola="..code.. " - "..i.." x "..j)
     pos_x = (j-1)*tileSize
     pos_y = (i-1)*tileSize -1
     
@@ -186,39 +159,17 @@ function evaluateField(sceneList, code,i,j)
     elseif code == 38 then --marfioso
       enemie_marfian.spawn(pos_x, pos_y)
       enemies.update_enemie_list()
-    elseif code >= 100 then
-      local data = mapManager.bgData[code]
-      --data.width
-      --data.height
-      -- para exibir love.graphics.draw(mapManager.bgSheet,data.quad, POSICAOX, POSICAOY)
     end
-    -- 100 poste
-    -- 101 arvore
-    -- 102 arbusto
-    -- 103 predio1
-    -- 104 predio2
-    -- 105 predio ferrado
-    -- 106 casa1
-    -- 107 casa2
-    -- 108 buraco
- 
         code = 1
   end
-    sceneList[i][j] = mapManager.data[code]
+  mapManager.solid[i][j] = mapManager.data[code]
 end
 
 function mapManager.start(filename)
   local file = io.open("MapManager/Distrito_Pacifico.txt")
-  local filebg = io.open("MapManager/Distrito_Pacifico_bg.txt")
-  
   local lines = file:lines()
-  local linesbg = file:lines()
-  
   mapManager.solid = {}
-  mapManager.background = {}
-  
   enemies.reset()
-  
   local i = 1
   local j
   for line in lines do
@@ -227,30 +178,12 @@ function mapManager.start(filename)
     j = 1
     local line = {}
     for word in words do
-      evaluateField(mapManager.solid,tonumber(word),i,j)
+      evaluateField(tonumber(word),i,j)
       j = j+1
     end
     i = i+1
   end
   file:close()
-  
-  
-  local ibg = 1
-  local jbg
-  for linebg in linesbg do
-    mapManager.background[i] = {}
-    local words = linebg:gmatch("%S+")
-    jbg = 1
-    local linebg = {}
-    for wordbg in wordsbg do
-      evaluateField(mapManager.background, tonumber(wordbg),ibg,jbg)
-      jbg = jbg+1
-    end
-    ibg = ibg+1
-  end
-  filebg:close()
-  
-  
   mapManager.camera = {
     pos_x = 0,
     pos_y = 0

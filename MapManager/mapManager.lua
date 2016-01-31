@@ -42,6 +42,41 @@ function mapManager.load()
   loadQuadTile(2,0,0) -- 2
   loadQuadTile(2,1,1) -- 3
   loadQuadTile(3,6,0) -- 4
+  loadQuadTile(1) -- 1
+  loadQuadTile(2,0,0) -- 2
+  loadQuadTile(2,1,1) -- 3
+  loadQuadTile(3,6,0) -- 4
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  loadQuadTile(3,6,0)
+  
 end
 
 --[[
@@ -73,7 +108,7 @@ function evaluateField(code,i,j)
 end
 
 function mapManager.start(filename)
-  local file = io.open("MapManager/stage_1.txt")
+  local file = io.open("MapManager/Distrito_Pacifico.txt")
   local lines = file:lines()
   mapManager.solid = {}
   local i = 1

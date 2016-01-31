@@ -1,5 +1,13 @@
 menu={}
 function menu.load()
+  start = love.graphics.newImage("menu/Start_Game.png")
+  start_select = love.graphics.newImage("menu/Start_Game_Selec.png")
+  instructions = love.graphics.newImage("menu/Instructions.png")
+  instructions_select = love.graphics.newImage("menu/Instructions_Selec.png")
+  quit = love.graphics.newImage("menu/Quit.png")
+  quit_select = love.graphics.newImage("menu/Quit_Selec.png")
+  instructions_screen = love.graphics.newImage("menu/Instructions_Menu.png")
+  instruction = false
   menu.buttonWidth = 200
   menu.buttonHeight = 100
   menu.buttonColor = {255,0,0,255}
@@ -49,6 +57,8 @@ function menu.keypressed(key)
     if(menu.pressionado == 1) then
       audio.playMenuStart()
       menu.startAnimation()
+    elseif (menu.pressionado == 2) then
+      instruction = true
     elseif menu.pressionado == 3 then
       audio.playMenuStart()
       love.event.push("quit")
@@ -63,10 +73,18 @@ end
 
 function menu.draw()
   love.graphics.draw(title, 640, 200, 0, 1, 1, title:getWidth()/2, title:getHeight()/2)
-  for i, v in ipairs(menu.buttons) do
-    local c = i == menu.pressionado and menu.selectedColor or menu.buttonColor
-    love.graphics.setColor(c)
-    love.graphics.rectangle("fill",v.x,v.y,menu.buttonWidth,menu.buttonHeight)
+  love.graphics.draw(start, 520, 400)
+  love.graphics.draw(instructions, 520, 500)
+  love.graphics.draw(quit, 520, 600)
+  if menu.pressionado == 1 then
+    love.graphics.draw(start_select, 520, 400)
+  elseif menu.pressionado == 2 then
+    love.graphics.draw(instructions_select, 520, 500)
+  else
+    love.graphics.draw(quit_select, 520, 600)
   end
   love.graphics.setColor(255,255,255)
+  if instruction == true then
+    love.graphics.draw(instructions_screen, 0,0)
+  end
 end

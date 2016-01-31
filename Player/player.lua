@@ -1,6 +1,7 @@
 require "Player/player_jumpState"
 require "Player/player_walkState"
-require "attack"require "animations"
+require "attack"
+require "animations"
 require "animationManager"
 player = {}
 

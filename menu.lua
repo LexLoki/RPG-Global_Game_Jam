@@ -28,7 +28,7 @@ function menu.update(dt)
       menu.timer = menu.timer - dt
       b.x = b.x + menu.vel*dt
       if menu.timer < 0 then
-        game.goToStage()
+        game.goToIntro()
       end
     end
   end

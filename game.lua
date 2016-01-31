@@ -3,6 +3,7 @@ require "menu"
 require "Player/player"
 require "stage"
 require "game_over"
+require "cutscene"
 game = {}
 
 function game.load()
@@ -11,6 +12,7 @@ function game.load()
   stage.load()
   game_over.load()
   game.goToMenu()
+  cutscene.load()
 end
 
 function game.start()
@@ -35,6 +37,9 @@ end
 function game.changeState(x)
   game.gameState = x
   game.gameState.start()
+end
+function game.goToCutscene()
+  game.changeState(cutscene)
 end
 
 function game.goToStage()

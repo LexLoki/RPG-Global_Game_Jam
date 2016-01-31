@@ -1,9 +1,8 @@
 cutscene = {}
 
 function cutscene.load()
-  video = love.graphics.newVideo(string, true)
+  video = love.graphics.newVideo("Animatic-Tic-Toc-Man_.ogv", true)
   video:play()
-  cutscene.seconds = 0
 end
 
 function cutscene.start()
@@ -17,14 +16,13 @@ function cutscene.keypressed(key)
 end
 
 function cutscene.update(dt)
-  --[[cutscene.seconds = video:tell()
-  if cutscene.seconds >= video:getDuration("seconds") then
+  if video:isPlaying() == false then
     endvideo()
-  end]]--
+  end
 end
 
 function cutscene.draw()
-  --love.graphics.draw(video, 0, 0)
+  love.graphics.draw(video, 0, 0)
 end
 
 function endvideo()

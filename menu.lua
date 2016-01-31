@@ -57,6 +57,7 @@ function menu.keypressed(key)
     if(menu.pressionado == 1) then
       audio.playMenuStart()
       menu.startAnimation()
+      game.goToCutscene()
     elseif (menu.pressionado == 2) then
       instruction = true
     elseif menu.pressionado == 3 then

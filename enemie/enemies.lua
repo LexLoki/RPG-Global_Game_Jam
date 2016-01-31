@@ -1,23 +1,27 @@
 require "enemie/enemie_human"
 require "enemie/enemie_dog"
+require "enemie/enemie_marfian"
 
 enemies = {}
 enemies.list = {}
-
-
 
 function enemies.load()
   
   enemie_human.load()
   enemie_dog.load()
-
-  enemies.list = {}
-  enemie_human.list = {}
-    enemie_dog.list = {}
+  enemie_marfian.load()
+  
+  enemies.reset()
 end
 
+function enemies.reset()
+  enemies.list = {}
+  enemie_human.list = {}
+  enemie_dog.list = {}
+  enemie_marfian.list = {}
+end
 function enemies.update_enemie_list()
-  enemies.list = {enemie_human, enemie_dog}
+  enemies.list = {enemie_human, enemie_dog, enemie_marfian}
 end
 
 function enemies.update(dt)

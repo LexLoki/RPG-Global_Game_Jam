@@ -152,6 +152,10 @@ function evaluateField(code,i,j)
     elseif code == 37 then --humano
       enemie_dog.spawn(pos_x, pos_y)
       enemies.update_enemie_list()
+    
+    elseif code == 38 then --marfioso
+      enemie_marfian.spawn(pos_x, pos_y)
+      enemies.update_enemie_list()
     end
         code = 1
   end
@@ -162,6 +166,7 @@ function mapManager.start(filename)
   local file = io.open("MapManager/Distrito_Pacifico.txt")
   local lines = file:lines()
   mapManager.solid = {}
+  enemies.reset()
   local i = 1
   local j
   for line in lines do

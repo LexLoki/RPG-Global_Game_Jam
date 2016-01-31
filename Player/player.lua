@@ -1,6 +1,7 @@
 require "Player/player_jumpState"
 require "Player/player_walkState"
 require "Player/player_dashState"
+require "Player/player_deathState"
 require "attack"
 require "animations"
 require "animationManager"
@@ -18,11 +19,13 @@ function player.load()
   player.maxLife = 3
   player_jumpState.load()
   player_dashState.load()
+  player_deathState.load()
   attack.load()
   player.walk = animations.loadSpriteData("/Assets/player_walk.png",8,8,1,true)
   player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.3,false)
   player.idle = animations.loadSpriteData("/Assets/player_idle.png",8,3,1,true)
-  player.hit = animations.loadSpriteData("/Assets/player_hit.png",1,1,0.4)
+  player.hit = animations.loadSpriteData("/Assets/player_hit.png",1,1,0.4,false)
+  player.death = animations.loadSpriteData("/Assets/player_death.png",9,9,0.5,false)
   player.dashCooldown = 3
 end
 
@@ -90,7 +93,7 @@ function player.jump()
   entryState(player_jumpState)
 end
 function player.reachFloor()
-  
+  print("chaozin")
   player.speedy = 0
   if player.state == player_jumpState then
     entryState(player_walkState)
@@ -105,8 +108,16 @@ function player.endDash()
   entryState(player_walkState)
 end
 
+function player.die()
+  entryState(player_deathState)
+end
+
 function player.keypressed(key)
-  player.state.keypressed(key)
+  if key == "a" then
+    player.die()
+  else
+    player.state.keypressed(key)
+  end
 end
 
 function player.keyreleased(key)

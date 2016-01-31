@@ -18,7 +18,7 @@ function viscont.draw()
   love.graphics.setColor(255,255,255)
   love.graphics.circle("line", 1020, 100, 40, 2000)
   love.graphics.setColor(0,0,255)
-  love.graphics.print(" PULO", 980, 145)
+  love.graphics.print(" JUMP", 980, 145)
   
   -- Contator Soco
   love.graphics.setColor(255,0,0)
@@ -28,5 +28,5 @@ function viscont.draw()
   love.graphics.setColor(255,255,255)
   love.graphics.circle("line", 1150, 100, 40, 2000)
   love.graphics.setColor(0,0,255)
-  love.graphics.print(" SOCO", 1110, 145)
+  love.graphics.print("PUNCH", 1110, 145)
 end

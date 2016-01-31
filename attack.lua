@@ -25,17 +25,12 @@ function attack.update(dt)
   
   -- soca em 3.5 segundos e desfaz após 0.5 segundos
   timer_punch = timer_punch + dt
-<<<<<<< HEAD
   if (timer_punch >= 4.0) then
     attack.ing = false
-=======
-  if (timer_punch >= 3.5) then
-    attack.ing = true
-    audio.playPlayerPunch()
->>>>>>> c446e18338d0fcaa2c5d96f0eda92176effc45ea
     timer_punch = 0
   elseif (timer_punch >= 3.5) then
     attack.ing = true
+    audio.playPlayerPunch()
   end
 
   if attack.damage and attack.timer_damage > damage_time then

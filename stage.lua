@@ -1,6 +1,7 @@
 require "Player/player"
 require "MapManager/mapManager"
 require "enemie/enemies"
+require "contadoresvisuais"
 
 stage = {}
 
@@ -11,6 +12,7 @@ function stage.load()
   
   -- Loop para atualizar Enemies da Lista
   enemies.load()
+  viscont.load()
 end
 
 function stage.update(dt)
@@ -22,8 +24,8 @@ function stage.update(dt)
     
    -- Loop para atualizar Enemies da Lista
     enemies.update(dt)
-
   end
+  viscont.update(dt)
 end
 
 function stage.draw()
@@ -34,6 +36,7 @@ function stage.draw()
   enemies.draw()
   
   player.draw()
+  viscont.draw()
   if stage.isPaused then
     stage.pauseDraw()
   end

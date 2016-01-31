@@ -7,7 +7,7 @@ end
 
 function tile_solid.handleVerticalContact(player)
   if player.speedy>0 then
-    tile.playerTouchedFloor()
+    tile.playerTouchedFloor(player)
   end
   return false
 end

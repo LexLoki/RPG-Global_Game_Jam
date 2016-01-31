@@ -3,7 +3,7 @@ tile_oneway = {}
 
 function tile_oneway.handleVerticalContact(player,block)
   if player.y<block.y and player.y+player.height<=block.y then
-    tile.playerTouchedFloor()
+    tile.playerTouchedFloor(player)
     return false
   else
     return true

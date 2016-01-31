@@ -1,13 +1,17 @@
 tile = {}
 
-function tile.playerTouchedFloor()
+function tile.playerTouchedFloor(player)
+  --[[
   if tile.touchedFloorCallback ~= nil then
     tile.touchedFloorCallback()
-  end
+  end]]
+  player.reachFloor()
 end
 
-function tile.playerHitHazard()
+function tile.playerHitHazard(player)
+  --[[
   if tile.hitHazardCallback ~= nil then
     tile.hitHazardCallback()
-  end
+  end]]
+  
 end

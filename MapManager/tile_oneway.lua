@@ -11,5 +11,5 @@ function tile_oneway.handleVerticalContact(player,block)
 end
 
 function tile_oneway.handleHorizontalContact(player)
-  return false
+  return true
 end

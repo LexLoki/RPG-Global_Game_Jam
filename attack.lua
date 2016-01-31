@@ -1,6 +1,5 @@
 attack = {}
 
-
 function attack.load()
   attack.width = 50
   attack.height = 50
@@ -25,13 +24,16 @@ function attack.update(dt)
     attack.ing = true
     timer_punch = 0
   end
+  --[[
   if(CheckBoxCollision(attack.x,attack.y,attack.width,attack.height,enemie.x,enemie.y,64,96)) and attack.ing then
     attack.damage = true 
   end
+  ]]
 end
 function attack.draw()
-local c = mapManager.camera
-  love.graphics.rectangle("line", attack.x - c.pos_x, attack.y - c.pos_y, attack.width, attack.height)
+  local c = mapManager.camera
+  love.graphics.rectangle("line", attack.x-c.pos_x, attack.y-c.pos_y, attack.width, attack.height)
+  love.graphics.print(tostring(attack.ing), 200, 300)
 end
 function attack.keypressed(key)
   

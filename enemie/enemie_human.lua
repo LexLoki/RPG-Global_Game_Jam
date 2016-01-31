@@ -1,5 +1,7 @@
 require "enemie/enemie_jumpState"
 require "enemie/enemie_walkState"
+require "animations"
+require "animationManager"
 
 enemie_human = {}
 
@@ -7,10 +9,11 @@ local entryState
 
 function enemie_human.load()
   
+  enemie_human.sprite = animations.loadSpriteData("/Assets/valentaoIdle.png",5,5,1,true)
   enemie_human.x = 500
   enemie_human.y = 200
-  enemie_human.width = 64
-  enemie_human.height = 128
+  enemie_human.width = enemie_human.sprite.sheet:getWidth()/5
+  enemie_human.height = enemie_human.sprite.sheet:getHeight()
   enemie_human.speedx = 0
   enemie_human.speedy = 0
   enemie_human.sight = 180
@@ -32,13 +35,11 @@ function enemie_human.load()
   enemie_human.dir_time = 0.8
   enemie_human.timer_dir = 0
   
-  
-  end
+end
 
 function enemie_human.start()
   enemie_human.x = 400
   enemie_human.y = 418
-
   enemie_human.state = enemie_walkState
 end
 
@@ -88,6 +89,8 @@ function enemie_human.update(dt)
   end
 
   enemie_human.state.update(enemie_human, dt)
+  animationManager_update(dt,enemie_human.sprite.aComp)
+  --animations
 end
 
 
@@ -95,8 +98,12 @@ function enemie_human.draw()
   local c = mapManager.camera
 
   love.graphics.setColor(255,0,255)
-  love.graphics.rectangle("fill",enemie_human.x-c.pos_x,enemie_human.y-c.pos_y,enemie_human.width,enemie_human.height)
+  local s = enemie_human.sprite
+  --love.graphics.rectangle("fill",enemie_human.x-c.pos_x,enemie_human.y-c.pos_y,enemie_human.width,enemie_human.height)
   love.graphics.setColor(255,255,255)
+  local d = enemie_human.speedx > 0 and -1 or 1
+  
+  love.graphics.draw(s.sheet,s.quads[s.aComp.curr_frame],enemie_human.x-c.pos_x+enemie_human.width/2, enemie_human.y-c.pos_y+enemie_human.height/2,0,d,1,enemie_human.width/2,enemie_human.height/2)
   love.graphics.print(enemie_human.name, (enemie_human.x + enemie_human.width/2) - c.pos_x, (enemie_human.y + enemie_human.height/2) - c.pos_y)
   
 end

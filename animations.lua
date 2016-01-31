@@ -60,3 +60,17 @@ function animations.loadQuads(quant,nCol,each_w,each_h,sprite_width,sprite_heigh
   end
   return quads
 end
+
+function animations.loadSpriteData(filename,quant,col,time,doRepeat)
+  local img = love.graphics.newImage(filename)
+  local aw = img:getWidth()
+  local ah = img:getHeight()
+  local ew = aw/col
+  local eh = ah/math.floor(quant/col)
+  local data = {
+    sheet=img,
+    quads=animations.loadQuads(quant,col,ew,eh,aw,ah),
+    aComp=animationManager_new(quant,time,doRepeat)
+  }
+  return data
+end

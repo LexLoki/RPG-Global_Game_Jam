@@ -1,5 +1,7 @@
 require "enemie/enemie_jumpState"
 require "enemie/enemie_walkState"
+require "animations"
+require "animationManager"
 
 enemie_dog = {}
 
@@ -7,10 +9,12 @@ local entryState
 
 function enemie_dog.load()
   
+  enemie_dog.idle = animations.loadSpriteData("/Assets/dog_idle.png",10,5,1,true)
+  
   enemie_dog.x = 800
   enemie_dog.y = 400
-  enemie_dog.width = 64
-  enemie_dog.height = 30
+  enemie_dog.width = enemie_dog.idle.sheet:getWidth()/5
+  enemie_dog.height = enemie_dog.idle.sheet:getHeight()/2
   enemie_dog.speedx = 0
   enemie_dog.speedy = 0
   enemie_dog.sight = 500
@@ -87,6 +91,7 @@ function enemie_dog.update(dt)
   end
 
   enemie_dog.state.update(enemie_dog, dt)
+  animationManager_update(dt,enemie_dog.idle.aComp)
 end
 
 
@@ -94,8 +99,11 @@ function enemie_dog.draw()
   local c = mapManager.camera
 
   love.graphics.setColor(255,0,255)
-  love.graphics.rectangle("fill",enemie_dog.x-c.pos_x,enemie_dog.y-c.pos_y,enemie_dog.width,enemie_dog.height)
+  --love.graphics.rectangle("fill",enemie_dog.x-c.pos_x,enemie_dog.y-c.pos_y,enemie_dog.width,enemie_dog.height)
   love.graphics.setColor(255,255,255)
+  local d = enemie_dog.speedx > 0 and -1 or 1
+  local s = enemie_dog.idle
+  love.graphics.draw(s.sheet,s.quads[s.aComp.curr_frame],enemie_dog.x-c.pos_x+enemie_human.width/2, enemie_dog.y-c.pos_y+enemie_dog.height/2,0,d,1,enemie_dog.width/2,enemie_dog.height/2)
   love.graphics.print(enemie_dog.name, (enemie_dog.x + enemie_dog.width/2) - c.pos_x, (enemie_dog.y + enemie_dog.height/2) - c.pos_y)
   
 end

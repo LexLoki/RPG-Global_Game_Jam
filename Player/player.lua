@@ -35,24 +35,10 @@ player.offset = {
     width = 29,
     height = 123
   }
-  player.walk = loadSpriteData("/Assets/player_walk.png",8,8,1,true)
-  player.jumpS = loadSpriteData("/Assets/player_jump.png",5,5,0.3,false)
+  player.walk = animations.loadSpriteData("/Assets/player_walk.png",8,8,1,true)
+  player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.3,false)
   player.curr_sprite = player.walk
   attack.start()
-end
-
-function loadSpriteData(filename,quant,col,time,doRepeat)
-  local img = love.graphics.newImage(filename)
-  local aw = img:getWidth()
-  local ah = img:getHeight()
-  local ew = aw/col
-  local eh = ah/math.floor(quant/col)
-  local data = {
-    sheet=img,
-    quads=animations.loadQuads(quant,col,ew,eh,aw,ah),
-    aComp=animationManager_new(quant,time,doRepeat)
-  }
-  return data
 end
 
 function player.update(dt)

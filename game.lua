@@ -2,7 +2,6 @@ require "dialog"
 require "menu"
 require "Player/player"
 require "stage"
-require "cutscene"
 game = {}
 
 function game.load()
@@ -38,10 +37,6 @@ end
 
 function game.goToStage()
   game.changeState(stage)
-end
-
-function game.goToIntro()
-  game.changeState(cutscene)
 end
 
 function game.goToMenu()

@@ -1,5 +1,6 @@
 require "Player/player_jumpState"
 require "Player/player_walkState"
+require "Player/player_dashState"
 require "attack"
 require "animations"
 require "animationManager"
@@ -16,14 +17,17 @@ function player.load()
   player.jump_time = 5.0
   player.maxLife = 3
   player_jumpState.load()
+  player_dashState.load()
   attack.load()
   player.walk = animations.loadSpriteData("/Assets/player_walk.png",8,8,1,true)
-  player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.6,false)
+  player.jumpS = animations.loadSpriteData("/Assets/player_jump.png",5,5,0.3,false)
   player.idle = animations.loadSpriteData("/Assets/player_idle.png",8,3,1,true)
   player.hit = animations.loadSpriteData("/Assets/player_hit.png",1,1,0.4)
+  player.dashCooldown = 3
 end
 
 function player.start()
+  player.dashCooldownTimer = 0
   player.invTimer = 0
   player.beingHit = false
   player.life = player.maxLife
@@ -48,6 +52,7 @@ player.offset = {
 end
 
 function player.update(dt)
+  if player.dashCooldownTimer>0 then player.dashCooldownTimer = player.dashCooldownTimer-dt end
   --player.y = player.y + player.speedy*dt
   if player.invTimer>0 then
     if animationManager_update(dt,player.hit.aComp)==-1 then
@@ -87,9 +92,17 @@ end
 function player.reachFloor()
   print("chaozin")
   player.speedy = 0
-  if player.state ~= player_walkState then
+  if player.state == player_jumpState then
     entryState(player_walkState)
   end
+end
+
+function player.dash()
+  entryState(player_dashState)
+end
+
+function player.endDash()
+  entryState(player_walkState)
 end
 
 function player.keypressed(key)

@@ -28,7 +28,7 @@ function enemie.load()
   enemie.dir = 1
   enemie.state = enemie_walkState
   enemie.jump_time = 5.0
-  timer_jump = 0
+  enemie.timer_jump = 0
 
   
   end
@@ -45,6 +45,7 @@ function enemie.start()
 end
 
 function enemie.update(dt)
+
   enemie.check(enemietype)
   
   if enemietype == 3 then
@@ -63,7 +64,12 @@ function enemie.update(dt)
       
       if (player.y + player.height + 20) < enemie.y + enemie.height then
          -- enemie.speedy = -700
-         enemie.jump();
+        timer_jump = timer_jump + dt
+        if timer_jump > 3 then
+          enemie.jump()
+        end
+      else
+        timer_jump = 0
       end
     end
 
@@ -71,16 +77,19 @@ function enemie.update(dt)
         enemie.speedx = 0
   end
   
-  enemie.state.update(dt)
+  enemie.state.update(enemie, dt)
 end
 
 
 function enemie.draw()
+  local c = mapManager.camera
+ 
   love.graphics.setColor(255,0,255)
-  love.graphics.rectangle("fill", enemie.x, enemie.y, enemie.width, enemie.height)
+  love.graphics.rectangle("fill",enemie.x-c.pos_x,enemie.y-c.pos_y,enemie.width,enemie.height)
   love.graphics.setColor(255,255,255)
-  love.graphics.print(enemie.name .. " " .. enemietype, enemie.x + enemie.width/2, enemie.y + enemie.height/2)
+  love.graphics.print(enemie.name .. " " .. enemietype, (enemie.x + enemie.width/2) - c.pos_x, (enemie.y + enemie.height/2) - c.pos_y)
   
+
 end
 
 function enemie.check(enemietype)
@@ -91,7 +100,7 @@ function enemie.check(enemietype)
     enemie.maxSpeed = 80 
     enemie.sight = 300
   elseif enemietype == 3 then 
-    enemie.maxSpeed = 80 
+    enemie.maxSpeed = 50 
     enemie.sight = 180
   end
 end
@@ -109,7 +118,7 @@ end
 
 
 function entryState(state)
-  enemie.state.exit()
-    enemie.state = state
-    enemie.state.start()
+  enemie.state.exit(enemie)
+  enemie.state = state
+  enemie.state.start(enemie)
 end

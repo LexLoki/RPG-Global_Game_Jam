@@ -3,26 +3,20 @@ require "mathUtils"
 enemie_walkState = {}
 
 
-function enemie_walkState.load()
+function enemie_walkState.load(entity)
   
 end
 
-function enemie_walkState.start()
+function enemie_walkState.start(entity)
 end
 
-function enemie_walkState.exit()
+function enemie_walkState.exit(entity)
   
 end
 
-function enemie_walkState.update(dt)
-end
-function enemie_walkState.draw()
-  
-end
+function enemie_walkState.update(entity, dt)
 
-function enemie_walkState.keypressed(key)
-  
 end
-function enemie_walkState.keyreleased(key)
+function enemie_walkState.draw(entity)
   
 end

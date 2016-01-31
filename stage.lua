@@ -1,6 +1,7 @@
 require "Player/player"
 require "MapManager/mapManager"
 require "enemie"
+require "enemie/enemie_dog"
 
 stage = {}
 
@@ -9,6 +10,7 @@ function stage.load()
   mapManager.load()
  -- mapManager.touchedFloorCallback(player.reachFloor)
   enemie.load()
+  enemie_dog.load()
 end
 
 function stage.update(dt)
@@ -19,6 +21,9 @@ function stage.update(dt)
     
     enemie.update(dt)
     mapManager.handleContact(dt,enemie)
+    
+    enemie_dog.update(dt)
+    mapManager.handleContact(dt,enemie_dog)
 
   end
 end
@@ -26,6 +31,7 @@ end
 function stage.draw()
   love.graphics.setColor(255,255,255)
   mapManager.draw()
+  enemie_dog.draw()
   enemie.draw()
   player.draw()
   if stage.isPaused then

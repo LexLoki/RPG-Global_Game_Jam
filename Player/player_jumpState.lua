@@ -8,6 +8,8 @@ end
 function player_jumpState.start()
   player.speedy = player_jumpState.jumpForce
   player.fastJump = math.abs(player.speedx)>player.maxSpeed
+  player.curr_sprite = player.jumpS
+  animationManager_restart(player.curr_sprite.aComp)
 end
 
 function player_jumpState.exit()

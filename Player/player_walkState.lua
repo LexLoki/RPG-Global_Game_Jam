@@ -8,6 +8,7 @@ function player_walkState.load()
 end
 
 function player_walkState.start()
+  player.curr_sprite = player.walk
 end
 
 function player_walkState.exit()

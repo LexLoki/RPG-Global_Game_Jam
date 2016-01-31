@@ -19,20 +19,11 @@ function attack.start()
   attack.ing = false
   timer_punch = 0
 end
-function attack.update(dt)
+
+function attack.update_damage(dt)
   attack.x = player.x --+ player.width/2
   attack.y = player.y --+ player.height/2
   
-  -- soca em 3.5 segundos e desfaz após 0.5 segundos
-  timer_punch = timer_punch + dt
-  if (timer_punch >= 4.0) then
-    attack.ing = false
-    timer_punch = 0
-  elseif (timer_punch >= 3.5) then
-    attack.ing = true
-    audio.playPlayerPunch()
-  end
-
   if attack.damage and attack.timer_damage > damage_time then
       attack.damage = false
       attack.timer_damage = 0
@@ -53,6 +44,22 @@ function attack.update(dt)
     end
   end
 end
+
+function attack.update(dt)
+  attack.x = player.x --+ player.width/2
+  attack.y = player.y --+ player.height/2
+  
+  -- soca em 3.5 segundos e desfaz após 0.5 segundos
+  timer_punch = timer_punch + dt
+  if (timer_punch >= 4.0) then
+    attack.ing = false
+    timer_punch = 0
+  elseif (timer_punch >= 3.5) then
+    attack.ing = true
+    audio.playPlayerPunch()
+  end
+end
+
 function attack.draw()
   local c = mapManager.camera
   

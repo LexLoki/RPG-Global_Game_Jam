@@ -9,6 +9,8 @@ end
 
 function viscont.draw()
   love.graphics.setFont(viscont.font)
+  
+    -- Contator Pulo
   love.graphics.setColor(255,0,0)
   love.graphics.circle("fill", 1020, 100, 40, 200)
   love.graphics.setColor(128,55,128)
@@ -17,10 +19,12 @@ function viscont.draw()
   love.graphics.circle("line", 1020, 100, 40, 2000)
   love.graphics.setColor(0,0,255)
   love.graphics.print(" PULO", 980, 145)
+  
+  -- Contator Soco
   love.graphics.setColor(255,0,0)
   love.graphics.circle("fill", 1150, 100, 40, 200)
   love.graphics.setColor(128,55,128)
-  love.graphics.arc("fill", 1150, 100, 40, 0, 0.8*math.pi*timer_jump, 200)
+  love.graphics.arc("fill", 1150, 100, 40, 0, 2/3.5*math.pi*timer_punch, 200)
   love.graphics.setColor(255,255,255)
   love.graphics.circle("line", 1150, 100, 40, 2000)
   love.graphics.setColor(0,0,255)

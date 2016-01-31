@@ -2,12 +2,14 @@ require "dialog"
 require "menu"
 require "Player/player"
 require "stage"
+require "game_over"
 game = {}
 
 function game.load()
   player.load()
   menu.load()
   stage.load()
+  game_over.load()
   game.goToMenu()
 end
 
@@ -41,4 +43,8 @@ end
 
 function game.goToMenu()
   game.changeState(menu)
+end
+
+function game.goToGameOver()
+  game.changeState(game_over)
 end

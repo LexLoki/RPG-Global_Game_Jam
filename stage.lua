@@ -65,5 +65,8 @@ function stage.keypressed(key)
     stage.isPaused = not stage.isPaused
   elseif not stage.isPaused then
     player.keypressed(key)
+    if key == "a" then
+      game.goToGameOver()
+      end
   end
 end

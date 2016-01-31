@@ -28,12 +28,12 @@ function enemie_marfian.spawn(_x, _y, _maxSpeed, _dir_time, _jump_time)
   
   _sight = enemie_marfian.sight * (1 + (((2*_var) * love.math.random()) - _var))
   
- table.insert(enemie_marfian.list,{name =  enemie_marfian.name..table.getn(enemie_marfian.list), x = _x, y = _y, sight = _sight, jump_time = _jump_time, jumpForce = enemie_marfian.jumpForce, dir_time = _dir_time, maxSpeed = _maxSpeed, invTime = 2 , width = enemie_marfian.idle.sheet:getWidth()/5, height = enemie_marfian.idle.sheet:getHeight()/2, speedx = 0, speedy = 0, dir = 0, last_dir = -1,state = enemie_walkState, timer_jump = 0, timer_dir = 0, aComp = animationManager_new(10,1, true), reachFloor = enemie_marfian.reachFloor})
+ table.insert(enemie_marfian.list,{name =  enemie_marfian.name..table.getn(enemie_marfian.list), x = _x, y = _y, sight = _sight, jump_time = _jump_time, jumpForce = enemie_marfian.jumpForce, dir_time = _dir_time, maxSpeed = _maxSpeed, invTime = 2 , width = enemie_marfian.idle.sheet:getWidth()/5, height = enemie_marfian.idle.sheet:getHeight()/2, speedx = 0, speedy = 0, dir = 0, last_dir = -1,state = enemie_walkState, timer_jump = 0, timer_dir = 0, aComp = animationManager_new(8,1, true), reachFloor = enemie_marfian.reachFloor})
 end
 
 function enemie_marfian.load()
   
-  enemie_marfian.idle = animations.loadSpriteData("/Assets/dog_idle.png",10,5,1,true)
+  enemie_marfian.idle = animations.loadSpriteData("/Assets/bandido_idle.png",8,8,1,true)
   
   --enemie_marfian.x = 800
   --enemie_marfian.y = 400

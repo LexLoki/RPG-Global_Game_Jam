@@ -62,6 +62,8 @@ function parallax_update(dt, p, mov)
     v.position = v.position + v.speed*mov*dt
     if v.position > v.width then
       v.position = v.position%v.width
+    elseif v.position < 0 then
+      v.position = v.width+v.position
     end
   end
 end

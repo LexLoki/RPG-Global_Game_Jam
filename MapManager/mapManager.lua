@@ -36,7 +36,7 @@ local loadBackground
 
 function loadBackground(string,speed)
   local img = love.graphics.newImage(string)
-  local h = love.graphics.getHeight()*1.3
+  local h = love.graphics.getHeight()
   local w = h/img:getHeight()*img:getWidth()
   return {image = img, height=h, width=w, speed=speed*w}
 end
@@ -44,9 +44,9 @@ end
 function mapManager.load()
   mapManager.data = {}
   mapManager.backgrounds = {
-    loadBackground("/Parallax/Plano-3.png",0.125),
-    loadBackground("/Parallax/Plano-2.png",0.25),
-    loadBackground("/Parallax/Plano-1.png",0.35)
+    loadBackground("/Parallax/Plano-3.png",0.05),
+    loadBackground("/Parallax/Plano-2.png",0.1),
+    loadBackground("/Parallax/Plano-1.png",0.1625)
   }
   mapManager.parallax = parallax_new(mapManager.backgrounds)
   mapManager.sheet = love.graphics.newImage("/MapManager/tileset.png")

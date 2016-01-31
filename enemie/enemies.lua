@@ -1,6 +1,7 @@
 require "enemie/enemie_human"
 require "enemie/enemie_dog"
 require "enemie/enemie_marfian"
+require "enemie/enemie_cat"
 
 enemies = {}
 enemies.list = {}
@@ -10,6 +11,7 @@ function enemies.load()
   enemie_human.load()
   enemie_dog.load()
   enemie_marfian.load()
+  enemie_cat.load()
   
   enemies.reset()
 end
@@ -19,9 +21,11 @@ function enemies.reset()
   enemie_human.list = {}
   enemie_dog.list = {}
   enemie_marfian.list = {}
+  enemie_cat.list = {}
 end
+
 function enemies.update_enemie_list()
-  enemies.list = {enemie_human, enemie_dog, enemie_marfian}
+  enemies.list = {enemie_human, enemie_dog, enemie_marfian, enemie_cat}
 end
 
 function enemies.update(dt)

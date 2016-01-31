@@ -3,7 +3,7 @@ require "enemie/enemie_walkState"
 require "animations"
 require "animationManager"
 
-enemie_dog = {}
+enemie_marfian = {}
 
 enemie_marfian.list = {}
 

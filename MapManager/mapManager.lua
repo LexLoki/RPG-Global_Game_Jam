@@ -133,10 +133,10 @@ function loadTile(string, id)
   table.insert(mapManager.data,{img=love.graphics.newImage("/Assets/Tiles/" .. string .. ".png"),class=tile_types[id]})
 end
 
-function evaluateField(code,i,j)
+function evaluateField(sceneList, code,i,j)
   if code > 32 then
     
-    print("rola="..code.. " - "..i.." x "..j)
+    --print("rola="..code.. " - "..i.." x "..j)
     pos_x = (j-1)*tileSize
     pos_y = (i-1)*tileSize -1
     
@@ -145,6 +145,9 @@ function evaluateField(code,i,j)
       player.y = pos_y
     elseif code == 34 then --relogio
     elseif code == 35 then --gato
+      enemie_cat.spawn(pos_x, pos_y)
+      enemies.update_enemie_list()
+
     elseif code == 36 then --cachorro
       enemie_human.spawn(pos_x, pos_y)
       enemies.update_enemie_list()
@@ -157,16 +160,34 @@ function evaluateField(code,i,j)
       enemie_marfian.spawn(pos_x, pos_y)
       enemies.update_enemie_list()
     end
+    
+    -- 100 poste
+    -- 101 arvore
+    -- 102 arbusto
+    -- 103 predio1
+    -- 104 predio2
+    -- 105 predio ferrado
+    -- 106 casa1
+    -- 107 casa2
+    -- 108 buraco
+ 
         code = 1
   end
-  mapManager.solid[i][j] = mapManager.data[code]
+    sceneList[i][j] = mapManager.data[code]
 end
 
 function mapManager.start(filename)
   local file = io.open("MapManager/Distrito_Pacifico.txt")
+  local filebg = io.open("MapManager/Distrito_Pacifico_bg.txt")
+  
   local lines = file:lines()
+  local linesbg = file:lines()
+  
   mapManager.solid = {}
+  mapManager.background = {}
+  
   enemies.reset()
+  
   local i = 1
   local j
   for line in lines do
@@ -175,12 +196,30 @@ function mapManager.start(filename)
     j = 1
     local line = {}
     for word in words do
-      evaluateField(tonumber(word),i,j)
+      evaluateField(mapManager.solid,tonumber(word),i,j)
       j = j+1
     end
     i = i+1
   end
   file:close()
+  
+  
+  local ibg = 1
+  local jbg
+  for linebg in linesbg do
+    mapManager.background[i] = {}
+    local words = linebg:gmatch("%S+")
+    jbg = 1
+    local linebg = {}
+    for wordbg in wordsbg do
+      evaluateField(mapManager.background, tonumber(wordbg),ibg,jbg)
+      jbg = jbg+1
+    end
+    ibg = ibg+1
+  end
+  filebg:close()
+  
+  
   mapManager.camera = {
     pos_x = 0,
     pos_y = 0

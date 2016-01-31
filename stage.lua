@@ -7,7 +7,7 @@ stage = {}
 
 function stage.load()
   player.load()
-  mapManager.load()
+  mapManager.load("")
  -- mapManager.touchedFloorCallback(player.reachFloor)
   
   -- Loop para atualizar Enemies da Lista
@@ -20,8 +20,6 @@ function stage.update(dt)
     mapManager.update(dt,player)
     player.update(dt)
     mapManager.handleContact(dt,player)
-    
-    
    -- Loop para atualizar Enemies da Lista
     enemies.update(dt)
   end

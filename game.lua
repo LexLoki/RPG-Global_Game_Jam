@@ -3,6 +3,7 @@ require "menu"
 require "Player/player"
 require "stage"
 require "game_over"
+require "audio"
 game = {}
 
 function game.load()

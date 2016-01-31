@@ -44,12 +44,14 @@ function mapManager.load()
   loadQuadTile(3,6,0)
 end
 
+--[[
 function mapManager.hazardCallback(callback)
   tile.hitHazardCallback = callback
 end
 function mapManager.touchedFloorCallback(callback)
   tile.touchedFloorCallback = callback
 end
+]]
 
 function loadQuadTile(id,x,y)
   if x ~= nil then
@@ -111,34 +113,34 @@ function mapManager.draw()
   end
 end
 
-function mapManager.handleContact(dt,player)
-  local s = math.sign(player.speedx)
-  local front = player.x + player.width/2 + player.width/2*s
-  local dx = front + player.speedx*dt
+function mapManager.handleContact(dt,entity)
+  local s = math.sign(entity.speedx)
+  local front = entity.x + entity.width/2 + entity.width/2*s
+  local dx = front + entity.speedx*dt
   local x_coord = math.floor(dx/tileSize)+1
-  if dx<0 then player.x = 0
-  elseif mapManager.handleHorizontalContact(player,x_coord) then
-    player.x = player.x + (dx - front)
+  if dx<0 then entity.x = 0
+  elseif mapManager.handleHorizontalContact(entity,x_coord) then
+    entity.x = entity.x + (dx - front)
   else
-    --player.x = (x_coord-1-s)*tileSize
+    --entity.x = (x_coord-1-s)*tileSize
   end
   
-  s = math.sign(player.speedy)
-  front = player.y + player.height/2 + player.height/2*s
-  local dy = front + player.speedy*dt
+  s = math.sign(entity.speedy)
+  front = entity.y + entity.height/2 + entity.height/2*s
+  local dy = front + entity.speedy*dt
   local y_coord = math.floor(dy/tileSize)+1
-  if mapManager.handleVerticalContact(player,y_coord) then
-    player.y = player.y + (dy - front)
+  if mapManager.handleVerticalContact(entity,y_coord) then
+    entity.y = entity.y + (dy - front)
   else
-    --player.y = (y_coord-1-s)*tileSize
+    --entity.y = (y_coord-1-s)*tileSize
   end
 end
 
-function mapManager.handleHorizontalContact(player,tx)
-  for i=math.floor(player.y/tileSize)+1,math.floor((player.y+player.height)/tileSize)+1 do
+function mapManager.handleHorizontalContact(entity,tx)
+  for i=math.floor(entity.y/tileSize)+1,math.floor((entity.y+entity.height)/tileSize)+1 do
     if i > 0 and i <= table.getn(mapManager.solid)
      and  tx > 0 and tx <= table.getn(mapManager.solid[i]) then
-      if not mapManager.solid[i][tx].class.handleHorizontalContact(player) then
+      if not mapManager.solid[i][tx].class.handleHorizontalContact(entity) then
         return false
       end
     else
@@ -148,12 +150,12 @@ function mapManager.handleHorizontalContact(player,tx)
   return true
 end
 
-function mapManager.handleVerticalContact(player,ty)
+function mapManager.handleVerticalContact(entity,ty)
   local y = (ty-1)*tileSize
-  for j=math.floor(player.x/tileSize)+1,math.floor((player.x+player.width)/tileSize)+1 do
+  for j=math.floor(entity.x/tileSize)+1,math.floor((entity.x+entity.width)/tileSize)+1 do
     if ty > 0 and ty <=  table.getn(mapManager.solid)
      and  j > 0 and j <=  table.getn(mapManager.solid[ty])then
-      if not mapManager.solid[ty][j].class.handleVerticalContact(player,{x=(j-1)*tileSize,y=y,width=tileSize,height=tileSize}) then
+      if not mapManager.solid[ty][j].class.handleVerticalContact(entity,{x=(j-1)*tileSize,y=y,width=tileSize,height=tileSize}) then
         return false
       end 
     end

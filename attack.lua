@@ -27,7 +27,6 @@ function attack.update(dt)
 --[[if(CheckBoxCollision(attack.x,attack.y,attack.width,attack.height,enemie.x,enemie.y,64,96)) and attack.ing then
     attack.damage = true 
   end]]
-  ]]
 end
 function attack.draw()
   local c = mapManager.camera

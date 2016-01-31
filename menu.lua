@@ -1,16 +1,17 @@
 menu={}
 function menu.load()
-  menu.buttonWidth = 500
-  menu.buttonHeight = 150
+  menu.buttonWidth = 200
+  menu.buttonHeight = 100
   menu.buttonColor = {255,0,0,255}
   menu.selectedColor = {0,255,255,255}
-  menu.buttonXPos = 500
+  menu.buttonXPos = 520
   menu.buttons = {
-    {yPos=100, dir = -1 },
-    {yPos=300, dir = -1},
-    {yPos=500, dir = 1 }
+    {yPos = 400, dir = -1 },
+    {yPos = 500, dir = -1},
+    {yPos = 600, dir = 1 }
   }
   menu.time = 1
+  title = love.graphics.newImage("LOGO_OFICAL.png")
 end
 
 function menu.start()
@@ -43,7 +44,11 @@ end
 
 function menu.keypressed(key)
   if(key == 'return') then
-    menu.startAnimation()
+    if(menu.pressionado == 1) then
+      menu.startAnimation()
+    elseif menu.pressionado == 3 then
+      love.event.push("quit")
+    end
   elseif(key == "down") then
     menu.pressionado = menu.pressionado%#menu.buttons+1
   elseif(key == "up") then
@@ -53,6 +58,7 @@ function menu.keypressed(key)
 end
 
 function menu.draw()
+  love.graphics.draw(title, 640, 200, 0, 1, 1, title:getWidth()/2, title:getHeight()/2)
   for i, v in ipairs(menu.buttons) do
     local c = i == menu.pressionado and menu.selectedColor or menu.buttonColor
     love.graphics.setColor(c)

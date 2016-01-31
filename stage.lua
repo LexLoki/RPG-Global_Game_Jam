@@ -13,7 +13,7 @@ end
 
 function stage.update(dt)
   if not stage.isPaused then
-    mapManager.update(dt)
+    mapManager.update(dt,player)
     player.update(dt)
     mapManager.handleContact(dt,player)
     

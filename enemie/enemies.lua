@@ -4,11 +4,16 @@ require "enemie/enemie_dog"
 enemies = {}
 enemies.list = {}
 
-function enemies.load()
 
+
+function enemies.load()
+  
   enemie_human.load()
   enemie_dog.load()
 
+  enemies.list = {}
+  enemie_human.list = {}
+    enemie_dog.list = {}
 end
 
 function enemies.update_enemie_list()

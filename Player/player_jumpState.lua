@@ -2,7 +2,7 @@ player_jumpState = {}
 
 
 function player_jumpState.load()
-  player_jumpState.jumpForce = -600
+  player_jumpState.jumpForce = -650
 end
 
 function player_jumpState.start()

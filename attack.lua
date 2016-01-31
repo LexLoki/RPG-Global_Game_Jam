@@ -29,7 +29,8 @@ function attack.update(dt)
   end
 end
 function attack.draw()
-  love.graphics.rectangle("line", attack.x, attack.y, attack.width, attack.height)
+  local c = mapManager.camera
+  love.graphics.rectangle("line", attack.x-c.pos_x, attack.y-c.pos_y, attack.width, attack.height)
   love.graphics.print(tostring(attack.ing), 200, 300)
 end
 function attack.keypressed(key)

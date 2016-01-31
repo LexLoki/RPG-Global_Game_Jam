@@ -27,7 +27,10 @@ function player_walkState.update(dt)
   end
   if love.keyboard.isDown("lshift") or love.keyboard.isDown("rshift") then
     player.speedx = player.maxSpeed*math.absSign(player.speedx)*2
-  end  
+  end
+  if player.speedx ~= 0 then
+    animationManager_update(dt,player.curr_sprite.aComp)
+  end
   attack.update(dt)
 end
 function player_walkState.draw()

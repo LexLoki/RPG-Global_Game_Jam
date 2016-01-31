@@ -21,6 +21,7 @@ function player_jumpState.update(dt)
   if player.fastJump then
     player.speedx = player.maxSpeed*math.absSign(player.speedx)*2
   end
+  animationManager_update(dt,player.curr_sprite.aComp)
 end
 
 function player_jumpState.draw()

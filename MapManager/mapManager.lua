@@ -188,8 +188,8 @@ function mapManager.start(filename)
     pos_x = 0,
     pos_y = 0
   }
-  mapManager.width = j*tileSize
-  mapManager.height = i*tileSize
+  mapManager.width = (j-1)*tileSize
+  mapManager.height = (i-1)*tileSize
 end
 
 function mapManager.update(dt,player)
@@ -198,6 +198,7 @@ function mapManager.update(dt,player)
   local x = mapManager.camera.pos_x
   mapManager.camera.pos_x = math.min(math.max(0,player.x+player.width/2-w/2),mapManager.width-w)
   mapManager.camera.pos_y = math.min(math.max(0,player.y+player.height/2-h/2),mapManager.height-h)
+  print(mapManager.camera.pos_y)
   parallax_update(dt,mapManager.parallax,math.absSign(mapManager.camera.pos_x-x))
 end
 

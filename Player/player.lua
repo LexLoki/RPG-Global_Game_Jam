@@ -150,3 +150,9 @@ function entryState(state)
   player.state = state
   player.state.start()
 end
+
+function player.reachAir()
+  if player.state ~= player_jumpState then
+    player_jumpState.startFall()
+  end
+end

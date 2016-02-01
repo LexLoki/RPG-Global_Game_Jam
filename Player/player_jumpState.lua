@@ -8,9 +8,14 @@ end
 function player_jumpState.start()
   audio.playPlayerJump()
   player.speedy = player_jumpState.jumpForce
-  player.fastJump = math.abs(player.speedx)>player.maxSpeed
   player.curr_sprite = player.jumpS
+  player.fastJump = math.abs(player.speedx)>player.maxSpeed
   animationManager_restart(player.curr_sprite.aComp)
+end
+
+function player_jumpState.startFall()
+  player.state = player_jumpState
+  player.fastJump = math.abs(player.speedx)>player.maxSpeed
 end
 
 function player_jumpState.exit()

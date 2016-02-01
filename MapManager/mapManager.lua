@@ -282,5 +282,6 @@ function mapManager.handleVerticalContact(entity,ty)
       end 
     end
   end
+  if entity.reachAir ~= nil then entity.reachAir() end
   return true
 end

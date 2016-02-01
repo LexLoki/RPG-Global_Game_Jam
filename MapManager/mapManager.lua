@@ -166,13 +166,16 @@ function evaluateField(code,i,j)
 end
 
 function mapManager.start(filename)
-  local file = io.open("MapManager/Distrito_Pacifico.txt")
-  local lines = file:lines()
+  local file = love.filesystem.read("/MapManager/Distrito_Pacifico.txt")--io.open("MapManager/Distrito_Pacifico.txt")
+  --print(file)
+  --file:gmatch('([^\n]+)')
+  
+  --local lines = file:lines()
   mapManager.solid = {}
   enemies.reset()
   local i = 1
   local j
-  for line in lines do
+  for line in file:gmatch('([^\n]+)') do
     mapManager.solid[i] = {}
     local words = line:gmatch("%S+")
     j = 1
@@ -183,7 +186,7 @@ function mapManager.start(filename)
     end
     i = i+1
   end
-  file:close()
+  --file:close()
   mapManager.camera = {
     pos_x = 0,
     pos_y = 0

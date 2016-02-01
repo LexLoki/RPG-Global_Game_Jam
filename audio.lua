@@ -1,9 +1,9 @@
 audio={}
 
 function audio.load()
-  audio.menuMusic = love.audio.newSource("/Assets/OST/Título.mp3")
-  audio.stageMusic = love.audio.newSource("/Assets/OST/Distrito Pacífico.mp3")
-  audio.bossMusic = love.audio.newSource("/Assets/OST/Distrito Destruído.mp3")
+  audio.menuMusic = love.audio.newSource("/Assets/OST/Titulo.mp3")
+  audio.stageMusic = love.audio.newSource("/Assets/OST/Distrito Pacifico.mp3")
+  audio.bossMusic = love.audio.newSource("/Assets/OST/Distrito Destruido.mp3")
   audio.gameoverMusic = love.audio.newSource("/Assets/SFX/Game Over.mp3")
   audio.musicPlaying = nil
   audio.pJumpSound = love.audio.newSource("/Assets/SFX/Pulo.mp3")

@@ -244,13 +244,8 @@ function mapManager.handleContact(dt,entity)
   elseif mapManager.handleHorizontalContact(entity,x_coord) then
     entity.x = entity.x + (dx - front)
   else
-    --entity.x = (x_coord-1-s)*tileSize
+    entity.x =  (x_coord-0.5)*tileSize-entity.width/2 -s*((tileSize+entity.width)/2+0.1)
   end
-  
---[[  if entity.name ~= nil then
-    print(entity.name)
-    print(entity.name.." "..entity.speedy)
-  end]]
   
   s = math.sign(entity.speedy)
   front = entity.y + entity.height/2 + entity.height/2*s
@@ -259,7 +254,7 @@ function mapManager.handleContact(dt,entity)
   if mapManager.handleVerticalContact(entity,y_coord) then
     entity.y = entity.y + (dy - front)
   else
-    --entity.y = (y_coord-1-s)*tileSize
+    entity.y = (y_coord-0.5)*tileSize-entity.height/2 -s*((tileSize+entity.height)/2+0.1)
   end
 end
 

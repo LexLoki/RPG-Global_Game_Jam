@@ -85,15 +85,15 @@ function player.draw()
   love.graphics.setColor(255,255,255)
   if player.speedx<0 then player.dir = -1
   elseif player.speedx>0 then player.dir = 1 end
-  love.graphics.draw(s.sheet,s.quads[s.aComp.curr_frame],player.x-c.pos_x+player.width/2,player.y-c.pos_y+player.height/2,0,player.dir,1,player.width/2,player.height/2)
+  love.graphics.draw(s.sheet,s.quads[s.aComp.curr_frame],player.x-c.pos_x+player.width/2,player.y-c.pos_y--[[-(0.3*110)]]+player.height/2,0,player.dir,1,player.width/2,player.height/2)
   attack.draw()
   
   if player.y-c.pos_y+player.height/2 > 1600 then
       player.life = 0
        player.takeHit()
        game.goToGameOver()
-
   end
+  attack.draw()
 end
 
 function player.jump()

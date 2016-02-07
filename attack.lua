@@ -70,19 +70,19 @@ end
 function attack.draw()
   local c = mapManager.camera
   
-  if attack.damage then
-    --[[
-    love.graphics.setColor(255,0,0)
+  --[[if attack.damage then
+    
+    love.graphics.setColor(255,255,255)
     love.graphics.rectangle("line", attack.x-c.pos_x, attack.y-c.pos_y, attack.width, attack.height)
-    ]]
-  end
+    
+  end]]
   
-  --[[
-   if attack.ing then
+  
+  if attack.ing then
     love.graphics.setColor(255,255,255)
     love.graphics.rectangle("line", attack.x-c.pos_x, attack.y-c.pos_y, attack.width, attack.height)
   end
-  ]]--
+
 end
 function attack.keypressed(key)
   
